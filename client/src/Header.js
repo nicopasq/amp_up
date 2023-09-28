@@ -1,10 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom"
 
 function Header(){
 
     return (
-        <div style={{backgroundColor: "Grey", position: "relative", top: "-2.21vh", right: "0.5vw", height: "7vh", width: "100vw"}}>
-            <h1>Click Me!</h1>
+        <div style={{backgroundColor: "Grey", position: "relative", right: "0.5vw", height: "7vh", width: "100vw"}}>
+            <NavLink to = '/my_home'>Click Me!</NavLink>
         </div>
     )
 }
