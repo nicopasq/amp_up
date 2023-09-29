@@ -1,5 +1,6 @@
 import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { Link } from "react-router-dom"
 
 function Login(){
     const [usernameVal, setUsernameVal] = useState('')
@@ -64,11 +65,12 @@ const submitBtnStyle = {
                 onClick={() => console.log(`Log in user: username: ${usernameVal}, password: ${passwordVal}`) }>Login!</Button>
             </form>
             <Typography sx={{position:'relative', left:'10.65vw'}} variant="body1">Don't Have an Account?</Typography>
+            <Link to = '/signup'>
             <Typography sx={{
                 position: 'relative',
                 left: '40%'}} 
-                variant="h4"
-                onClick={() => console.log("Sign Me UP!")} >Sign Up</Typography>
+                variant="h4">Sign Up</Typography>
+            </Link>
 
             </Box>
         </Container>
