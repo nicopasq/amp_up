@@ -35,7 +35,7 @@ function Login(){
             </form>
 
             <Typography variant="body1">Don't Have an Account?</Typography>
-            <Typography variant="h4">Sign Up</Typography>
+            <Typography variant="h4" onClick={() => console.log("Sign Me UP!")} >Sign Up</Typography>
 
             </Box>
         </Container>
