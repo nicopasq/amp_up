@@ -1,9 +1,12 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import NavBar from "./NavBar";
 
 function Home(){
     return (
-        <Typography variant="h1"> This is the home page</Typography>
+        <>
+        <NavBar/>
+        </>
     )
 }
 
