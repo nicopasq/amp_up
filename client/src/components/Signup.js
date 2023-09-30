@@ -33,13 +33,6 @@ const submitBtnStyle = {
     right: "2vw"
 }
 
-function createUser(e){
-    e.preventDefault();
-    const user = {username, password}
-    console.log(user)
-
-}
-
     return (
         <Container>
             <Box sx={boxSX}>
