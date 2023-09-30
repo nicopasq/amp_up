@@ -15,7 +15,7 @@ function NavBar(){
                 <h1 className="navBtn" >Account Search</h1>
                 <h1 className="navBtn">My Responses</h1>
             </div>
-            <Typography variant="h4" className="navBtn">Log-out</Typography>
+            <Typography id="logout" variant="h4">Log-out</Typography>
         </Paper>
     )
 }
