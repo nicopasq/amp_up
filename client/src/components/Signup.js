@@ -3,10 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom"
 
 function Signup(){
-    const [usernameVal, setUsernameVal] = useState('')
-    const [passwordVal, setPasswordVal] = useState('')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('')
-
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
 const boxSX = {
     width: '50%',
@@ -35,6 +33,13 @@ const submitBtnStyle = {
     right: "2vw"
 }
 
+function createUser(e){
+    e.preventDefault();
+    const user = {username, password}
+    console.log(user)
+
+}
+
     return (
         <Container>
             <Box sx={boxSX}>
@@ -43,35 +48,32 @@ const submitBtnStyle = {
                 left: '40%'}}
                 variant="h4">Sign Up</Typography>
 
-            <form id="loginForm" style={loginFormStyle}>
+            <form 
+            id="loginForm"
+            onSubmit={(e) => createUser(e)}
+            style={loginFormStyle}>
                     <Grid item xs={4} sx={inputStyle}>
                         <TextField
+                        id="username"
                         sx={{scale:"1.3"}} 
                         variant="standard"
                         placeholder="Username"
-                        onChange={(e) => setUsernameVal(e.target.value)}
-                        value={usernameVal}/>
+                        onChange={(e) => setUsername(e.target.value)}
+                        value={username}/>
                     </Grid>
                     <Grid item xs={4} sx={inputStyle}>
                         <TextField 
+                        id="password"
                         sx={{scale:"1.3"}} 
                         variant="standard" 
                         placeholder="Password"
-                        onChange={(e) => setPasswordVal(e.target.value)}
-                        value={passwordVal}/>
-                    </Grid>
-                    <Grid item xs={4} sx={inputStyle}>
-                        <TextField
-                        sx={{scale:"1.3"}}
-                        variant="standard"
-                        placeholder="Confirm Password"
-                        onChange={(e) => setPasswordConfirmation(e.target.value)}
-                        value={passwordConfirmation}/>
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}/>
                     </Grid>
                 <Button 
                 sx={submitBtnStyle} 
                 variant="contained"
-                onClick={() => console.log(`create user: username: ${usernameVal}, password: ${passwordVal} confirm: ${passwordConfirmation}`) }>Sign Up!</Button>
+                type="Submit">Sign Up!</Button>
             </form>
             <Link to = '/login'>
                 <Typography sx={{position:'relative', left:'12.25vw'}} variant="button">Back to Login</Typography>
