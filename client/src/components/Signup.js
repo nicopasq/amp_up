@@ -34,7 +34,7 @@ const submitBtnStyle = {
 }
 
 function createUser(){
-    
+
 }
     return (
         <Container>
@@ -44,7 +44,7 @@ function createUser(){
                 left: '40%'}}
                 variant="h4">Sign Up</Typography>
 
-            <form 
+            <form  
             id="loginForm"
             onSubmit={(e) => createUser(e)}
             style={loginFormStyle}>
