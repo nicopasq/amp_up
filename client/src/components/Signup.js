@@ -1,10 +1,13 @@
-import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
 
 function Signup(){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [alertMessage, setAlertMessage] = useState([])
+    const [alertSx, setAlertSx] = useState({visibility:"hidden"})
+    const [currentUser, setCurrentUser] = useState({})
 
 const boxSX = {
     width: '50%',
@@ -35,7 +38,6 @@ const submitBtnStyle = {
 
 function createUser(e){
     e.preventDefault();
-    const user = {username, password};
 
     fetch(`/users`, {
         method: "POST",
@@ -44,9 +46,24 @@ function createUser(e){
         },
         body: JSON.stringify({username, password})
     })
+    .then( (r) => {
+        if(r.ok){
+            r.json().then((r) => {setCurrentUser(r)})
+        } else {
+            r.json().then((r) => setAlertMessage(r.errors))
+            setAlertSx({visibility:"block"})
+            
+        }
+    })
 }
+console.log(alertMessage)
+
     return (
         <Container>
+            <Alert severity="error" sx={alertSx}>
+                Can not Sign up: {alertMessage.map(e => e + ", ")}
+                <Button onClick={() => setAlertSx({visibility:"hidden"})}>X</Button>
+            </Alert>
             <Box sx={boxSX}>
             <Typography sx={{
                 position: 'relative',
@@ -78,6 +95,7 @@ function createUser(e){
                 <Button 
                 sx={submitBtnStyle} 
                 variant="contained"
+                onClick={console.log(currentUser)}
                 type="Submit">Sign Up!</Button>
             </form>
             <Link to = '/login'>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-rescue_from ActiveRecord::RecordInvalid, with: :user_invalid_create
+rescue_from ActiveRecord::RecordInvalid, with: :render_unproccesable_entity
 wrap_parameters format: []
 
     def create
