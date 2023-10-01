@@ -33,8 +33,17 @@ const submitBtnStyle = {
     right: "2vw"
 }
 
-function createUser(){
+function createUser(e){
+    e.preventDefault();
+    const user = {username, password};
 
+    fetch(`/users`, {
+        method: "POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify({username, password})
+    })
 }
     return (
         <Container>
