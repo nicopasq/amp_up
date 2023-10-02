@@ -34,6 +34,17 @@ const submitBtnStyle = {
     right: "2vw"
 }
 
+function loginUser(e){
+    e.preventDefault();
+
+    fetch(`/login`,{
+        method: "POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({usernameVal, passwordVal})
+    })
+    .then((r) => r.json())
+    .then(data => console.log(data))
+}
     return (
         <Container>
             <Box sx={boxSX}>
@@ -42,7 +53,10 @@ const submitBtnStyle = {
                 left: '43%'}}
                 variant="h4">Login</Typography>
 
-            <form id="loginForm" style={loginFormStyle}>
+            <form 
+            id="loginForm" 
+            onSubmit={loginUser}
+            style={loginFormStyle}>
                     <Grid item xs={4} sx={inputStyle}>
                         <TextField
                         sx={{scale:"1.3"}} 
@@ -60,9 +74,10 @@ const submitBtnStyle = {
                         value={passwordVal}/>
                     </Grid>
                 <Button 
-                sx={submitBtnStyle} 
+                sx={submitBtnStyle}
+                type="Submit" 
                 variant="contained"
-                onClick={() => console.log(`Log in user: username: ${usernameVal}, password: ${passwordVal}`) }>Login!</Button>
+                >Login!</Button>
             </form>
             <Typography sx={{position:'relative', left:'10.65vw'}} variant="body1">Don't Have an Account?</Typography>
             <Link to = '/signup'>

@@ -7,6 +7,12 @@ wrap_parameters format: []
         render json: new_user
     end
 
+    def login
+        user = User.find_by(username:params[:usernameVal])
+        # byebug
+        render json: user
+    end
+
     private 
 
     def userParams

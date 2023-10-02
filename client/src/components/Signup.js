@@ -52,11 +52,9 @@ function createUser(e){
         } else {
             r.json().then((r) => setAlertMessage(r.errors))
             setAlertSx({visibility:"block"})
-            
         }
     })
 }
-console.log(alertMessage)
 
     return (
         <Container>
@@ -95,7 +93,6 @@ console.log(alertMessage)
                 <Button 
                 sx={submitBtnStyle} 
                 variant="contained"
-                onClick={console.log(currentUser)}
                 type="Submit">Sign Up!</Button>
             </form>
             <Link to = '/login'>
