@@ -4,7 +4,7 @@ wrap_parameters format: []
 
     def create
         new_user = User.create!(userParams)
-        render json: new_user
+        render json: new_user, status: :created
     end
 
     private 
