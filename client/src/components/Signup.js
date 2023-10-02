@@ -48,7 +48,9 @@ function createUser(e){
     })
     .then( (r) => {
         if(r.ok){
-            r.json().then((r) => {setCurrentUser(r)})
+            r.json().then((r) => {
+                console.log(r)
+                setCurrentUser(r)})
         } else {
             r.json().then((r) => setAlertMessage(r.errors))
             setAlertSx({visibility:"block"})

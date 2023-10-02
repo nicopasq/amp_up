@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom"
 
 function Login(){
-    const [usernameVal, setUsernameVal] = useState('')
-    const [passwordVal, setPasswordVal] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
 
 const boxSX = {
@@ -40,7 +40,7 @@ function loginUser(e){
     fetch(`/login`,{
         method: "POST",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({usernameVal, passwordVal})
+        body:JSON.stringify({username, password})
     })
     .then((r) => r.json())
     .then(data => console.log(data))
@@ -62,16 +62,16 @@ function loginUser(e){
                         sx={{scale:"1.3"}} 
                         variant="standard"
                         placeholder="Username"
-                        onChange={(e) => setUsernameVal(e.target.value)}
-                        value={usernameVal}/>
+                        onChange={(e) => setUsername(e.target.value)}
+                        value={username}/>
                     </Grid>
                     <Grid item xs={4} sx={inputStyle}>
                         <TextField 
                         sx={{scale:"1.3"}} 
                         variant="standard" 
                         placeholder="Password"
-                        onChange={(e) => setPasswordVal(e.target.value)}
-                        value={passwordVal}/>
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}/>
                     </Grid>
                 <Button 
                 sx={submitBtnStyle}
