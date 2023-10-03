@@ -42,15 +42,12 @@ function App(){
     )
     } else {
         return (
-            <>
             <Switch>
             <Route to ='/home'>
                     <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
                     <Home user={currentUser}/>
             </Route>
-           
             </Switch> 
-            </>
             )
         } 
 }

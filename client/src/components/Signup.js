@@ -1,13 +1,16 @@
 import { Alert, Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function Signup({setCurrentUser}){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [alertMessage, setAlertMessage] = useState([])
     const [alertSx, setAlertSx] = useState({visibility:"hidden"})
+    const history = useHistory();
 
+    
 const boxSX = {
     width: '50%',
     position: 'relative',
@@ -48,7 +51,8 @@ function createUser(e){
     .then( (r) => {
         if(r.ok){
             r.json().then((r) => {
-                setCurrentUser(r)})
+                setCurrentUser(r)
+                history.push('/home')})
         } else {
             r.json().then((r) => setAlertMessage(r.errors))
             setAlertSx({visibility:"block"})

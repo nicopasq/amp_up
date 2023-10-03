@@ -1,11 +1,12 @@
 import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function Login({setCurrentUser, setErrors, setErrorSx}){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
+    const history = useHistory();
 const boxSX = {
     width: '50%',
     position: 'relative',
@@ -47,6 +48,7 @@ function loginUser(e){
             setErrors(data.error.login);
             setErrorSx({visibility:"block"});
         } else {
+            history.push('/home')
             setCurrentUser(data)
         }
     })

@@ -16,8 +16,8 @@ function NavBar({setCurrentUser, currentUser}){
     return (
         <Paper elevation={3} sx={{width: '17%', height:'100vh', position:'absolute', top:'0vh', left:'0vw', bgcolor:'#DCC48E'}}>
             <div id="user" style={{borderBottom: '2px solid black'}}>
-                <Avatar id="userAvatar">N</Avatar>
-                <Typography id="userName" variant="h4">UserName</Typography>
+                <Avatar id="userAvatar">{currentUser.username[0]}</Avatar>
+                <Typography id="userName" variant="h4">{currentUser.username}</Typography>
             </div>
             <div id="links" style={{borderBottom: '2px solid black', height:'75%'}}>
                 <h1 className="navBtn" >Explore Discussions</h1>

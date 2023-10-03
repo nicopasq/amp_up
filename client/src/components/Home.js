@@ -1,6 +1,5 @@
 import { Container, Typography } from "@mui/material";
 import React from "react";
-import NavBar from "./NavBar";
 import DiscussionPost from "./DiscussionPost";
 
 function Home(){
