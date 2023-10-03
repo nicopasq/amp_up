@@ -20,8 +20,6 @@ function App(){
         })
     }, [])
 
-console.log("currentUser", currentUser)
-
     if (!currentUser) {
     return (
         <>
@@ -44,18 +42,10 @@ console.log("currentUser", currentUser)
     } else {
         return (
             <>
-
             <Switch>
             <Route to ='/home'>
                 <Home user={currentUser}/>
             </Route>
-            
-                <Route path = "/signup">
-                <Signup setCurrentUser={setCurrentUser}/>
-                </Route>
-                <Route exact path = '/'>
-                <Login setCurrentUser={setCurrentUser}/>
-                </Route>
            
             </Switch> 
             </>

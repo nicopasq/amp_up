@@ -2,12 +2,11 @@ import { Alert, Box, Button, Container, Grid, TextField, Typography } from "@mui
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
 
-function Signup(){
+function Signup({setCurrentUser}){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [alertMessage, setAlertMessage] = useState([])
     const [alertSx, setAlertSx] = useState({visibility:"hidden"})
-    const [currentUser, setCurrentUser] = useState({})
 
 const boxSX = {
     width: '50%',
@@ -49,7 +48,6 @@ function createUser(e){
     .then( (r) => {
         if(r.ok){
             r.json().then((r) => {
-                console.log(r)
                 setCurrentUser(r)})
         } else {
             r.json().then((r) => setAlertMessage(r.errors))
@@ -88,6 +86,7 @@ function createUser(e){
                         id="password"
                         sx={{scale:"1.3"}} 
                         variant="standard" 
+                        type="password"
                         placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}/>
