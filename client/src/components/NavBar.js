@@ -1,8 +1,17 @@
-import { Avatar, Paper, Typography } from "@mui/material";
+import { Avatar, Button, Paper, Typography } from "@mui/material";
 import React from "react";
 import '../styles/navBar.css'
 
-function NavBar(){
+function NavBar({setCurrentUser, currentUser}){
+
+    function logOut(){
+        fetch(`/login`, {
+            method: "DELETE", 
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(currentUser)})
+        .then((r) => console.log(r))
+        setCurrentUser('')
+    }
 
     return (
         <Paper elevation={3} sx={{width: '17%', height:'100vh', position:'absolute', top:'0vh', left:'0vw', bgcolor:'#DCC48E'}}>
@@ -15,7 +24,9 @@ function NavBar(){
                 <h1 className="navBtn" >Account Search</h1>
                 <h1 className="navBtn">My Responses</h1>
             </div>
+            <Button onClick={logOut}>
             <Typography id="logout" variant="h4">Log-out</Typography>
+            </Button>
         </Paper>
     )
 }

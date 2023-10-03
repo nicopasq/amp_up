@@ -4,6 +4,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Home from "./Home";
 import { Alert, Button } from "@mui/material";
+import NavBar from "./NavBar";
 
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
@@ -44,7 +45,8 @@ function App(){
             <>
             <Switch>
             <Route to ='/home'>
-                <Home user={currentUser}/>
+                    <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+                    <Home user={currentUser}/>
             </Route>
            
             </Switch> 
