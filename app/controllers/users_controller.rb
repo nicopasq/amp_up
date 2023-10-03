@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :render_unproccesable_entity
+skip_before_action :authorized, only: :create
 wrap_parameters format: []
 
     def create
         new_user = User.create!(userParams)
         render json: new_user, status: :created
+    end
+
+    def show
+        user = User.find(session[:user_id])
+        render json: user
     end
 
     private 

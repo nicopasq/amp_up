@@ -1,11 +1,11 @@
 import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function Login(){
+function Login({setCurrentUser, setErrors, setErrorSx}){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
 
 const boxSX = {
     width: '50%',
@@ -43,8 +43,16 @@ function loginUser(e){
         body:JSON.stringify({username, password})
     })
     .then((r) => r.json())
-    .then(data => console.log(data))
-}
+    .then(data => {
+        if(data.error){
+            setErrors(data.error.login);
+            setErrorSx({visibility:"block"});
+        } else {
+            setCurrentUser(data)
+        }
+    })
+} 
+
     return (
         <Container>
             <Box sx={boxSX}>
@@ -73,11 +81,14 @@ function loginUser(e){
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}/>
                     </Grid>
-                <Button 
-                sx={submitBtnStyle}
-                type="Submit" 
-                variant="contained"
-                >Login!</Button>
+
+                    <Button 
+                        sx={submitBtnStyle}
+                        type="Submit" 
+                        variant="contained">
+                            Login!
+                    </Button>
+
             </form>
             <Typography sx={{position:'relative', left:'10.65vw'}} variant="body1">Don't Have an Account?</Typography>
             <Link to = '/signup'>
