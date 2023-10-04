@@ -5,8 +5,8 @@ import Signup from "./Signup";
 import Home from "./Home";
 import { Alert, Button } from "@mui/material";
 import NavBar from "./NavBar";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import CreatePost from "./CreatePost";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
@@ -14,13 +14,15 @@ function App(){
     const [errorSx, setErrorSx] = useState({
         visibility:"hidden"
     })
-    const history = useHistory();
-
+    const history = useHistory()
     useEffect(() => {
         fetch(`/auth`)
         .then((r) => {
             if (r.ok){
-                r.json().then(data => setCurrentUser(data))
+                r.json().then(data =>{
+                    history.push('/home')
+                     setCurrentUser(data)
+                    })
             }
         })
     }, [])
@@ -45,16 +47,15 @@ function App(){
         </>
     )
 } else {
-
         return (
             <Switch>
-            <Route path ='/home'>
-                <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-                <Home user={currentUser}/>
-            </Route>
             <Route path ='/new_post'>
                 <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
                 <CreatePost/>
+            </Route>
+            <Route path ='/home'>
+                <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+                <Home user={currentUser}/>
             </Route>
             </Switch> 
             )
