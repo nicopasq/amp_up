@@ -23,17 +23,23 @@ function NavBar({setCurrentUser, currentUser}){
                 <Typography id="userName" variant="h4">{currentUser.username}</Typography>
             </div>
             <div id="links" style={{borderBottom: '2px solid black', height:'75%'}}>
-                <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
-                    <Link to='/home'>Explore Discussions</Link>
-                </Typography>
-                <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
-                    <Link to='/new_post'>Start A Discussion</Link>
-                </Typography>
-                <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
-                    <Link to='/responses'>
+                <Link to='/home'>
+                    <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
+                        Explore Discussions
+                    </Typography>
+                </Link>
+
+                <Link to='/new_post'>
+                    <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
+                        Start A Discussion
+                    </Typography>
+                </Link>
+
+                <Link to='/responses'>
+                    <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
                         My Responses
-                    </Link>
-                </Typography>
+                    </Typography>
+                </Link>
             </div>
             <Button onClick={logOut}>
             <Typography id="logout" variant="h4">Log-out</Typography>

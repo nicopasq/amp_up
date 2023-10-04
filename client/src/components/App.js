@@ -6,6 +6,7 @@ import Home from "./Home";
 import { Alert, Button } from "@mui/material";
 import NavBar from "./NavBar";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import CreatePost from "./CreatePost";
 
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
@@ -20,7 +21,6 @@ function App(){
         .then((r) => {
             if (r.ok){
                 r.json().then(data => setCurrentUser(data))
-                history.push('/home')
             }
         })
     }, [])
@@ -44,16 +44,22 @@ function App(){
         </Switch>
         </>
     )
-    } else {
+} else {
+
         return (
             <Switch>
-            <Route to ='/home'>
-                    <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-                    <Home user={currentUser}/>
+            <Route path ='/home'>
+                <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+                <Home user={currentUser}/>
+            </Route>
+            <Route path ='/new_post'>
+                <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+                <CreatePost/>
             </Route>
             </Switch> 
             )
-        } 
+            
+        }
 }
 
 export default App;
