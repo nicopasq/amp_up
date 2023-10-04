@@ -1,9 +1,11 @@
 import { Avatar, Button, Paper, Typography } from "@mui/material";
 import React from "react";
 import '../styles/navBar.css'
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function NavBar({setCurrentUser, currentUser}){
-
+    const history = useHistory();
+    
     function logOut(){
         fetch(`/login`, {
             method: "DELETE", 
@@ -11,6 +13,7 @@ function NavBar({setCurrentUser, currentUser}){
             body:JSON.stringify(currentUser)})
         .then((r) => console.log(r))
         setCurrentUser('')
+        history.push('/login')
     }
 
     return (

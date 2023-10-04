@@ -5,6 +5,7 @@ import Signup from "./Signup";
 import Home from "./Home";
 import { Alert, Button } from "@mui/material";
 import NavBar from "./NavBar";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
@@ -12,11 +13,14 @@ function App(){
     const [errorSx, setErrorSx] = useState({
         visibility:"hidden"
     })
+    const history = useHistory();
+
     useEffect(() => {
         fetch(`/auth`)
         .then((r) => {
             if (r.ok){
                 r.json().then(data => setCurrentUser(data))
+                history.push('/home')
             }
         })
     }, [])

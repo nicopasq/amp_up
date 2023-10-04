@@ -48,14 +48,16 @@ function createUser(e){
         },
         body: JSON.stringify({username, password})
     })
-    .then( (r) => {
-        if(r.ok){
-            r.json().then((r) => {
-                setCurrentUser(r)
-                history.push('/home')})
-        } else {
-            r.json().then((r) => setAlertMessage(r.errors))
+    .then((r) => r.json())
+    .then((data) => {
+        if(data.errors){
+            let errors = '';
+            data.errors.map(e => errors += `${e}, `)
+            setAlertMessage(errors)
             setAlertSx({visibility:"block"})
+        } else {
+            setCurrentUser(data)
+            history.push('/home')
         }
     })
 }
@@ -63,7 +65,7 @@ function createUser(e){
     return (
         <Container>
             <Alert severity="error" sx={alertSx}>
-                Can not Sign up: {alertMessage.map(e => e + ", ")}
+                Can not Sign up: {alertMessage}
                 <Button onClick={() => setAlertSx({visibility:"hidden"})}>X</Button>
             </Alert>
             <Box sx={boxSX}>

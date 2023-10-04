@@ -97,6 +97,7 @@ function loginUser(e){
             <Typography sx={{
                 position: 'relative',
                 left: '40%'}} 
+                onClick={() => setErrorSx({visibility:"hidden"})}
                 variant="h4">Sign Up</Typography>
             </Link>
 
