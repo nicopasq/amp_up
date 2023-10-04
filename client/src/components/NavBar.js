@@ -1,7 +1,7 @@
 import { Avatar, Button, Paper, Typography } from "@mui/material";
 import React from "react";
 import '../styles/navBar.css'
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function NavBar({setCurrentUser, currentUser}){
     const history = useHistory();
@@ -23,9 +23,17 @@ function NavBar({setCurrentUser, currentUser}){
                 <Typography id="userName" variant="h4">{currentUser.username}</Typography>
             </div>
             <div id="links" style={{borderBottom: '2px solid black', height:'75%'}}>
-                <h1 className="navBtn" >Explore Discussions</h1>
-                <h1 className="navBtn" >Account Search</h1>
-                <h1 className="navBtn">My Responses</h1>
+                <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
+                    <Link to='/home'>Explore Discussions</Link>
+                </Typography>
+                <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
+                    <Link to='/new_post'>Start A Discussion</Link>
+                </Typography>
+                <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
+                    <Link to='/responses'>
+                        My Responses
+                    </Link>
+                </Typography>
             </div>
             <Button onClick={logOut}>
             <Typography id="logout" variant="h4">Log-out</Typography>

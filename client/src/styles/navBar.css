@@ -1,7 +1,6 @@
 .navBtn{
-    margin-top:4vh;
     position: relative;
-    left: 1vw;
+    left: .5vw;
 }
 
 #userAvatar{
