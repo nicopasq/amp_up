@@ -1,15 +1,17 @@
 import { Container, Typography } from "@mui/material";
 import React from "react";
 import DiscussionPost from "./DiscussionPost";
+import '../styles/page.css'
+
 
 function Home(){
     return (
         <>
-        <Container id="homeContainer" sx={{borderBottom: "2px solid black", height:'15.35vh', position: 'relative', right:'1.75vw'}}>
-            <div id="pageName">
+        <Container id="homeContainer">
+            <div className="pageHead">
                 <Typography variant="h1">Explore Discussions</Typography>
             </div>
-            <div id="displayDiscussions">
+            <div id="homeContent">
              <DiscussionPost/>
             </div>
         </Container>
