@@ -1,12 +1,12 @@
 .pageHead{
     border-bottom: 2px solid black;
     height: 15.2vh;
-    width: 100vw;
+    width: 100%;
     position: relative;
     right: 2.75vw;
 }
 
 h1{
     position: relative;
-    left: 15%;
+    left: 12%;
 }

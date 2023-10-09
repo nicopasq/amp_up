@@ -17,7 +17,7 @@ function NavBar({setCurrentUser, currentUser}){
     }
 
     return (
-        <Paper elevation={3} sx={{width: '17%', height:'100vh', position:'absolute', top:'0vh', left:'0vw', bgcolor:'#DCC48E'}}>
+        <Paper elevation={3} sx={{width: '18.35%', height:'100vh', position:'absolute', top:'0vh', left:'0vw', bgcolor:'#DCC48E'}}>
             <div id="user" style={{borderBottom: '2px solid black'}}>
                 <Avatar id="userAvatar">{currentUser.username[0]}</Avatar>
                 <Typography id="userName" variant="h4">{currentUser.username}</Typography>

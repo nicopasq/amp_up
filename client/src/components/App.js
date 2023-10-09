@@ -7,6 +7,7 @@ import { Alert, Button } from "@mui/material";
 import NavBar from "./NavBar";
 import CreatePost from "./CreatePost";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Filler from "./Filler";
 
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
@@ -52,10 +53,12 @@ function App(){
             <Route path ='/new_post'>
                 <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
                 <CreatePost/>
+                <Filler/>
             </Route>
             <Route path ='/home'>
                 <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
                 <Home user={currentUser}/>
+                <Filler/>
             </Route>
             </Switch> 
             )

@@ -18,11 +18,11 @@ function CreatePost(){
     }
 
     return (
-        <Container>
+        <Container sx={{overflow:'hidden'}}>
             <div className="pageHead">
                 <Typography variant="h1">Start A Discussion</Typography>
             </div>
-            <Paper elevation={24} id="createContent" sx={{bgcolor:"grey"}}>
+            <Paper elevation={3} id="createContent" sx={{bgcolor:'#DCC48E'}}>
                 <form 
                 onSubmit={handleSubmit}
                 id="createPostForm">

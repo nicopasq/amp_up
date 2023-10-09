@@ -1,0 +1,8 @@
+#homeContainer{
+    border: 1px solid green;
+    height: 100vh;
+    position: relative;
+    right: 7px;
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
