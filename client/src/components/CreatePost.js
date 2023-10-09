@@ -4,24 +4,16 @@ import "../styles/page.css"
 import "../styles/createPost.css"
 
 function CreatePost(){
-    const [postData, setPostData] = useState({
-        DQ: '',
-        following: ''
-    })
-
-    function handleInput(e){
-        setPostData({...postData, [e.target.name] : e.target.value})
-    }
+    const [dq, setDq] = useState('')
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(postData)
         // fetch(`/posts`, {
         //     method:"POST",
         //     headers:{
         //         "Content-Type":"application/json"
         //     },
-        //     body: JSON.stringify(postData)
+        //     body: JSON.stringify(dq)
         // })
     }
 
@@ -42,15 +34,8 @@ function CreatePost(){
                         multiline
                         sx={{bgcolor:"white", width:'80%', marginLeft:'3vw', borderRadius:'10px'}}
                         rows={3}
-                        defaultValue={postData.DQ}
-                        onChange={e => handleInput(e)}/>
-                    <Typography variant="h4">Follow Post?</Typography>
-                    <div id="followPostRadio">
-                            <Typography variant="h6">Yes</Typography>
-                        <input type="radio" value="true" name="following" className="followPost" onClick={e => handleInput(e)}/>
-                            <Typography variant="h6">No</Typography>
-                        <input type="radio" value="false" name="following" className="followPost" onClick={e => handleInput(e)}/>
-                    </div>
+                        defaultValue={dq}
+                        onChange={e => setDq(e.target.value)}/>
                     <Button type="Submit" variant="contained">Post Discussion</Button>
                 </form>
             </Paper>
