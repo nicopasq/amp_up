@@ -1,5 +1,5 @@
 import { Button, Paper, TextField, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import '../styles/discussionPost.css'
 
 function DiscussionPost({post}){
@@ -22,6 +22,6 @@ function DiscussionPost({post}){
             </Paper>
         </div>
     )
-}
 
+}
 export default DiscussionPost;

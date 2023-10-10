@@ -1,7 +1,7 @@
-import { Alert, Button, Container, Paper, Radio, RadioGroup, TextField, Typography } from "@mui/material";
+import { Alert, Button, Container, Paper, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import "../styles/createPost.css"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 function CreatePost({currentUser, setAllPosts}){
     const [question, setQuestion] = useState('')
@@ -9,7 +9,6 @@ function CreatePost({currentUser, setAllPosts}){
     const [postErrorSx, setPostErrorSx] = useState({
         visibility:'hidden'
     })
-    const history = useHistory()
 
     function handleSubmit(e){
         e.preventDefault()

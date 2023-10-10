@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :render_unproccesable_entity
-
+skip_before_action :authorized, only: :index
     wrap_parameters format: []
     
     def create

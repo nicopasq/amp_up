@@ -24,10 +24,12 @@ function App(){
             if (r.ok){
                 r.json().then(data =>{
                     history.push('/home')
-                     setCurrentUser(data)
-                    })
+                    setCurrentUser(data)
+                })
             }
         })
+    }, [])
+    useEffect(() => {
         fetch(`/posts`)
         .then(r => r.json())
         .then(data => {
@@ -37,7 +39,7 @@ function App(){
                 setAllPosts(data)
             }
         })
-        }, [])
+    }, [])
 
     if (!currentUser) {
     return (
