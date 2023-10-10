@@ -1,8 +1,14 @@
 import { Button, Paper, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import '../styles/discussionPost.css'
 
 function DiscussionPost(){
+
+    useEffect(() => {
+        fetch(`/posts`)
+        .then(r => r.json())
+        .then(data => console.log(data))
+    },[])
 
     function postDiscussion(e){
         e.preventDefault();

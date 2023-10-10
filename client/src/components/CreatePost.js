@@ -20,12 +20,12 @@ function CreatePost({addNewQuestion}){
         })
         .then(r => r.json())
         .then(data => {
-            console.log(data)
             if(data.errors){
                 setPostErrors(data.errors.map(e => e + " "))
                 setPostErrorSx({visibility:"block"})
+            } else {
+                addNewQuestion(data)
             }
-            // addNewQuestion(data)
         })
     }
 

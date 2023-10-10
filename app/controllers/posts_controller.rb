@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :render_unproccesable_entity
+
     wrap_parameters format: []
     
     def create
@@ -7,6 +8,14 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unproccesable_entity
         render json: new_post, status: :created
     end
 
+    def index
+        posts = Post.all
+        if posts
+            render json: posts
+        else
+            render json: {error: 'There a currently no discussions'}
+        end
+    end
     private
     
     def post_params
