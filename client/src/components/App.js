@@ -12,6 +12,7 @@ import Filler from "./Filler";
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
     const [errors, setErrors] = useState('')
+    const [questions, setQuestions] = useState([])
     const [errorSx, setErrorSx] = useState({
         visibility:"hidden"
     })
@@ -28,6 +29,11 @@ function App(){
         })
     }, [])
 
+    function addNewQuestion(q){
+        const question = q.question
+        setQuestions([...questions, question])
+    }
+console.log(questions)
     if (!currentUser) {
     return (
         <>
@@ -39,7 +45,7 @@ function App(){
         </Alert>
         <Switch>
             <Route path = "/signup">
-                <Signup setCurrentUser={setCurrentUser}/>
+                <Signup setCurrentUser={setCurrentUser} setErrors={setErrors} setErrorSx={setErrorSx}/>
             </Route>
             <Route path = '/'>
                 <Login setCurrentUser={setCurrentUser} setErrors={setErrors} setErrorSx={setErrorSx}/>
@@ -52,7 +58,7 @@ function App(){
             <Switch>
             <Route path ='/new_post'>
                 <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-                <CreatePost/>
+                <CreatePost addNewQuestion={addNewQuestion}/>
                 <Filler/>
             </Route>
             <Route path ='/home'>

@@ -1,9 +1,14 @@
+#createPostContainer{
+    height: 100vh;
+    position: relative;
+    right: 7px;
+}
 #createContent{
     width: 40vw;
     height: 50vh;
     position: relative;
     top: 10vh;
-    left: 13vw;
+    left: 10vw;
 }
 
 #createPostForm{
@@ -33,4 +38,8 @@
 }
 #followPostRadio h6{
     margin-left: 2vw;
+}
+
+h1{
+    text-align: center;
 }

@@ -4,7 +4,7 @@ skip_before_action :authorized, only: :create
 wrap_parameters format: []
 
     def create
-        new_user = User.create!(userParams)
+        new_user = User.create!(user_params)
         session[:user_id] = new_user.id
         render json: new_user, status: :created
     end
@@ -16,7 +16,7 @@ wrap_parameters format: []
 
     private 
 
-    def userParams
+    def user_params
         params.permit(:username, :password)
     end
 

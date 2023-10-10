@@ -55,7 +55,7 @@ function loginUser(e){
 } 
 
     return (
-        <Container>
+        <Container sx={{height:'80vh'}}>
             <Box sx={boxSX}>
             <Typography sx={{
                 position: 'relative',

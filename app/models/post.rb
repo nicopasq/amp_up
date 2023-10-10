@@ -1,3 +1,4 @@
 class Post < ApplicationRecord
-    validates :dq, presence: true
+    validates :question, presence: true
+    validates :question, uniqueness: true
 end

@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function Signup({setCurrentUser}){
+function Signup({setCurrentUser, setErrors, setErrorSx}){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [alertMessage, setAlertMessage] = useState([])
-    const [alertSx, setAlertSx] = useState({visibility:"hidden"})
     const history = useHistory();
 
     
@@ -51,10 +49,8 @@ function createUser(e){
     .then((r) => r.json())
     .then((data) => {
         if(data.errors){
-            let errors = '';
-            data.errors.map(e => errors += `${e}, `)
-            setAlertMessage(errors)
-            setAlertSx({visibility:"block"})
+            setErrors(data.errors)
+            setErrorSx({visibility:"block"})
         } else {
             setCurrentUser(data)
             history.push('/home')
@@ -63,11 +59,7 @@ function createUser(e){
 }
 
     return (
-        <Container>
-            <Alert severity="error" sx={alertSx}>
-                Can not Sign up: {alertMessage}
-                <Button onClick={() => setAlertSx({visibility:"hidden"})}>X</Button>
-            </Alert>
+        <Container sx={{height:'80vh'}}>
             <Box sx={boxSX}>
             <Typography sx={{
                 position: 'relative',
@@ -102,7 +94,7 @@ function createUser(e){
                 variant="contained"
                 type="Submit">Sign Up!</Button>
             </form>
-            <Link to = '/login'>
+            <Link onClick={(e)=>setErrorSx({visibility:'hidden'})} to = '/login'>
                 <Typography sx={{position:'relative', left:'12.25vw'}} variant="button">Back to Login</Typography>
             </Link>
 
