@@ -1,14 +1,8 @@
 import { Button, Paper, TextField, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import '../styles/discussionPost.css'
 
-function DiscussionPost(){
-
-    useEffect(() => {
-        fetch(`/posts`)
-        .then(r => r.json())
-        .then(data => console.log(data))
-    },[])
+function DiscussionPost({post}){
 
     function postDiscussion(e){
         e.preventDefault();
@@ -16,7 +10,7 @@ function DiscussionPost(){
     return (
         <div id="discussionContainer">
             <Paper elevation={3} sx={{height:'40vh'}} >
-                <Typography variant="h3" sx={{borderBottom:'1px solid black'}}>This is a question</Typography>
+                <Typography variant="h3" sx={{borderBottom:'1px solid black'}}>{post.question}</Typography>
                 <Typography variant="h3" ><u>Responses</u></Typography>
                 <form onSubmit={postDiscussion}id="addResponse">
                     <Typography variant="h5">Add Response</Typography>

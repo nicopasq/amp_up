@@ -12,6 +12,8 @@ import Filler from "./Filler";
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
     const [errors, setErrors] = useState('')
+    const [allPosts, setAllPosts] = useState([])
+    const [displayMessage, setDisplayMessage] = useState('')
     const [errorSx, setErrorSx] = useState({
         visibility:"hidden"
     })
@@ -26,7 +28,16 @@ function App(){
                     })
             }
         })
-    }, [])
+        fetch(`/posts`)
+        .then(r => r.json())
+        .then(data => {
+            if (data.errors){
+                setDisplayMessage(data.errors)
+            } else {
+                setAllPosts(data)
+            }
+        })
+        }, [])
 
     if (!currentUser) {
     return (
@@ -52,12 +63,12 @@ function App(){
             <Switch>
             <Route path ='/new_post'>
                 <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-                <CreatePost />
+                <CreatePost currentUser={currentUser} setAllPosts={setAllPosts}/>
                 <Filler/>
             </Route>
             <Route path ='/home'>
                 <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-                <Home user={currentUser}/>
+                <Home user={currentUser} allPosts={allPosts} displayMessage={displayMessage}/>
                 <Filler/>
             </Route>
             </Switch> 

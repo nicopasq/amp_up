@@ -1,3 +1,3 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :question
+  attributes :id, :question
 end

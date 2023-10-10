@@ -1,34 +1,33 @@
 import { Alert, Button, Container, Paper, Radio, RadioGroup, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import "../styles/createPost.css"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function CreatePost({addNewQuestion}){
+function CreatePost({currentUser, setAllPosts}){
     const [question, setQuestion] = useState('')
     const [postErrors, setPostErrors] = useState([])
     const [postErrorSx, setPostErrorSx] = useState({
         visibility:'hidden'
     })
+    const history = useHistory()
 
     function handleSubmit(e){
-        e.preventDefault();
+        e.preventDefault()
         fetch(`/posts`, {
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({question})
+            method: "POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({question, currentUser})
         })
         .then(r => r.json())
         .then(data => {
-            if(data.errors){
-                setPostErrors(data.errors.map(e => e + " "))
+            if (data.errors){
+                setPostErrors(data.errors)
                 setPostErrorSx({visibility:"block"})
-            } else {
-                addNewQuestion(data)
+            } else{
+                setAllPosts((posts) => [...posts, data])
             }
         })
     }
-
     return (
         <Container id="createPostContainer">
             <div className="pageHead">

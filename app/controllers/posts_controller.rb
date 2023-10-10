@@ -4,16 +4,17 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unproccesable_entity
     wrap_parameters format: []
     
     def create
-        new_post = Post.create!(post_params)
-        render json: new_post, status: :created
+        user = User.find(params[:currentUser][:id])
+            new_post = user.posts.create!(post_params)
+            render json: new_post, status: :created
     end
 
     def index
         posts = Post.all
-        if posts
+        if posts.count > 0
             render json: posts
         else
-            render json: {error: 'There a currently no discussions'}
+            render json: {errors: 'There a currently no discussions'}
         end
     end
     private

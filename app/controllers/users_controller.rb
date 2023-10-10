@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :render_unproccesable_entity
+rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found
 skip_before_action :authorized, only: :create
 wrap_parameters format: []
 
@@ -22,5 +23,9 @@ wrap_parameters format: []
 
     def render_unproccesable_entity invalid
         render json: {errors: invalid.record.errors.full_messages}, status: 422
+    end
+    
+    def render_record_not_found
+        render json: {errors:"User is not logged in"}, status: 404
     end
 end
