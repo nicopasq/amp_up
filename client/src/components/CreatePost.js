@@ -13,15 +13,17 @@ function CreatePost({currentUser, setAllPosts}){
         e.preventDefault()
 
         const postData = {
-            question,
+            question: question,
             currentUser:currentUser.id
         }
 
-        fetch(`/posts`
-            // {method: "POST",
-            // headers:{"Content-Type":"application/json"},
-            // body:JSON.stringify(postData)}
-            )
+        fetch(`/posts`, {
+            method:"POST",
+            headers:{
+                "Content-Type" : "application/json"
+            },
+            body:JSON.stringify(postData)
+        })
         .then(r => {
             if (r.ok){
                 r.json().then(data => console.log(data))
