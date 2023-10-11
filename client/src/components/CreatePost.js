@@ -11,7 +11,7 @@ function CreatePost({currentUser, setAllPosts}){
     })
     function handleSubmit(e){
         e.preventDefault()
-        
+
         fetch(`/posts`, {
             method:"POST",
             headers:{
@@ -45,7 +45,7 @@ function CreatePost({currentUser, setAllPosts}){
             </div>
             <Paper elevation={3} id="createContent" sx={{bgcolor:'#DCC48E'}}>
                 <form 
-                onSubmit={e => handleSubmit(e)}
+                onSubmit={handleSubmit}
                 id="createPostForm">
                     <Typography variant="h3"><u>Enter a Discussion Question</u></Typography>
                     <TextField
