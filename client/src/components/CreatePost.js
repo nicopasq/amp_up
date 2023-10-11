@@ -50,7 +50,7 @@ function CreatePost({currentUser, setAllPosts}){
             </div>
             <Paper elevation={3} id="createContent" sx={{bgcolor:'#DCC48E'}}>
                 <form 
-                onSubmit={handleSubmit}
+                onSubmit={e => handleSubmit(e)}
                 id="createPostForm">
                     <Typography variant="h3"><u>Enter a Discussion Question</u></Typography>
                     <TextField
