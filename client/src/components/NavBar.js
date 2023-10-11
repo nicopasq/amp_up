@@ -1,9 +1,11 @@
 import { Avatar, Button, Paper, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import '../styles/navBar.css'
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { UserContext } from "./UserContext";
 
-function NavBar({setCurrentUser, currentUser}){
+function NavBar(){
+    const {currentUser, setCurrentUser} = useContext(UserContext)
     const history = useHistory();
     
     function logOut(){

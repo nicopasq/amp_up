@@ -4,7 +4,7 @@ import DiscussionPost from "./DiscussionPost";
 import '../styles/home.css'
 
 
-function Home({allPosts, currentUser, displayMessage}){
+function Home({allPosts, displayMessage}){
 
     console.log("React posts:", allPosts)
     let discussionPosts 

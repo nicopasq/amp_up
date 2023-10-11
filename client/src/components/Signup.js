@@ -1,11 +1,13 @@
 import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { UserContext } from "./UserContext";
 
-function Signup({setCurrentUser, setErrors, setErrorSx}){
+function Signup({setErrors, setErrorSx}){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const {setCurrentUser} = useContext(UserContext)
     const history = useHistory();
 
     

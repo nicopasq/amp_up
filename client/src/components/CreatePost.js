@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../styles/createPost.css"
 
 
-function CreatePost({currentUser, setAllPosts}){
+function CreatePost({ setAllPosts }){
     const [question, setQuestion] = useState('')
     const [postErrors, setPostErrors] = useState([])
     const [postErrorSx, setPostErrorSx] = useState({
