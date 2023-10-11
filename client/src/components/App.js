@@ -43,6 +43,7 @@ function App(){
         })
     }, [])
 
+    
     if (!currentUser) {
     return (
         <>

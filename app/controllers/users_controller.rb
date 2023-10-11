@@ -13,6 +13,7 @@ wrap_parameters format: []
     def show
         user = User.find(session[:user_id])
         render json: user
+        # {user: user, posts: user.posts}
     end
 
     private 
