@@ -11,18 +11,13 @@ function CreatePost({currentUser, setAllPosts}){
     })
     function handleSubmit(e){
         e.preventDefault()
-
-        const postData = {
-            question: question,
-            currentUser:currentUser.id
-        }
-
+        
         fetch(`/posts`, {
             method:"POST",
             headers:{
                 "Content-Type" : "application/json"
             },
-            body:JSON.stringify(postData)
+            body:JSON.stringify({question, currentUser:currentUser.id})
         })
         .then(r => {
             if (r.ok){
