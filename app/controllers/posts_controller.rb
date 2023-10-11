@@ -4,7 +4,7 @@ skip_before_action :authorized, only: :index
     wrap_parameters format: []
     
     def create
-        byebug
+        render json: {params: params}
         # user = User.find(params[:currentUser])
         #     # new_post = user.posts.create!(params[:question])
         #     # render json: new_post, status: :created
