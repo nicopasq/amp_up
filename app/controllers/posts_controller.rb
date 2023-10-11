@@ -4,7 +4,7 @@ skip_before_action :authorized, only: :index
     wrap_parameters format: []
     
     def create
-        post = Post.create!(params[:question])
+        post = Post.create!(question: params[:question])
         render json: post
 
         # user = User.find(params[:currentUser])
