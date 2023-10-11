@@ -5,7 +5,9 @@ skip_before_action :authorized, only: :index
     
     def create
         user = User.find(params[:currentUser])
-        render json: {user: user}
+            new_post = user.posts.create(question: params[:question])
+
+        render json: {new_post: new_post}
         # user = User.find(params[:currentUser])
         #     # new_post = user.posts.create!(params[:question])
         #     # render json: new_post, status: :created
