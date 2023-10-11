@@ -30,9 +30,7 @@ function App(){
                 })
             }
         })
-    }, [])
 
-    useEffect(() => {
         fetch(`/posts`)
         .then(r => r.json())
         .then(data => {
