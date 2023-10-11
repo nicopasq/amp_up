@@ -35,9 +35,9 @@ function NavBar({setCurrentUser, currentUser}){
                     </Typography>
                 </Link>
 
-                <Link to='/my_discussions'>
+                <Link to='/my_responses'>
                     <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
-                        My Discussions
+                        My Responses
                     </Typography>
                 </Link>
             </div>

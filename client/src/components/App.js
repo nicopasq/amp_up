@@ -8,7 +8,7 @@ import NavBar from "./NavBar";
 import CreatePost from "./CreatePost";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Filler from "./Filler";
-import MyDiscussions from "./MyDiscussions";
+import MyResponses from "./MyResponses";
 
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
@@ -30,6 +30,7 @@ function App(){
             }
         })
     }, [])
+
     useEffect(() => {
         fetch(`/posts`)
         .then(r => r.json())
@@ -70,9 +71,9 @@ function App(){
                 <CreatePost currentUser={currentUser} setAllPosts={setAllPosts}/>
                 <Filler/>
             </Route>
-            <Route path='/my_discussions'>
+            <Route path='/my_responses'>
                 <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-                <MyDiscussions/>
+                <MyResponses/>
                 <Filler/>
             </Route>
             <Route path ='/home'>

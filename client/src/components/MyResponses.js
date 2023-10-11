@@ -1,13 +1,13 @@
 import { Container, Typography } from "@mui/material";
 import React from "react";
 
-function MyDiscussions(){
+function MyResponses(){
     return (
         <Container>
-            <Typography variant="h1">My Discussions Page</Typography>
+            <Typography variant="h1">My Responses Page</Typography>
         </Container>
     )
 }
 
 
-export default MyDiscussions;
+export default MyResponses;
