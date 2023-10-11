@@ -22,15 +22,20 @@ function CreatePost({currentUser, setAllPosts}){
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(postData)
         })
-        .then(r => r.json())
-        .then(data => {
-            if (data.errors){
-                setPostErrors(data.errors)
-                setPostErrorSx({visibility:"block"})
-            } else{
-                setAllPosts((posts) => [...posts, data])
+        .then(r => {
+            if (r.ok){
+                return r.json()
             }
         })
+        .then(data => console.log(data))
+        // .then(data => {
+        //     if (data.errors){
+        //         setPostErrors(data.errors)
+        //         setPostErrorSx({visibility:"block"})
+        //     } else{
+        //         setAllPosts((posts) => [...posts, data])
+        //     }
+        // })
     }
     return (
         <Container id="createPostContainer">

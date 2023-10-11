@@ -8,6 +8,7 @@ import NavBar from "./NavBar";
 import CreatePost from "./CreatePost";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Filler from "./Filler";
+import MyDiscussions from "./MyDiscussions";
 
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
@@ -67,6 +68,11 @@ function App(){
             <Route path ='/new_post'>
                 <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
                 <CreatePost currentUser={currentUser} setAllPosts={setAllPosts}/>
+                <Filler/>
+            </Route>
+            <Route path='/my_discussions'>
+                <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+                <MyDiscussions/>
                 <Filler/>
             </Route>
             <Route path ='/home'>

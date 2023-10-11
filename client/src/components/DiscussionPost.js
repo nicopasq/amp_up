@@ -15,7 +15,7 @@ function DiscussionPost({post}){
                 <form onSubmit={postDiscussion}id="addResponse">
                     <Typography variant="h5">Add Response</Typography>
                     <TextField id="input" sx={{position:"relative", top:'-3.25vh', left:'9vw'}} variant="filled"/>
-                    <Button sx={{position:"relative", top:"-4.5vh", left:'9vw'}}type="submit">
+                    <Button sx={{position:"relative", top:"-4.5vh", left:'8.5vw'}}type="submit">
                         <Typography variant="h5">➜</Typography>
                     </Button>
                 </form>
