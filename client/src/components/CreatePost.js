@@ -24,10 +24,10 @@ function CreatePost({currentUser, setAllPosts}){
         })
         .then(r => {
             if (r.ok){
-                return r.json()
+                r.json().then(data => console.log(data))
             }
         })
-        .then(data => console.log(data))
+        // .then(data => console.log(data))
         // .then(data => {
         //     if (data.errors){
         //         setPostErrors(data.errors)

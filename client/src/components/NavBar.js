@@ -29,7 +29,7 @@ function NavBar({setCurrentUser, currentUser}){
                     </Typography>
                 </Link>
 
-                <Link to='/new_post'>
+                <Link to='/posts/new'>
                     <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
                         Start A Discussion
                     </Typography>

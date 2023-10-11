@@ -65,7 +65,7 @@ function App(){
 } else {
         return (
             <Switch>
-            <Route path ='/new_post'>
+            <Route path ='/posts/new'>
                 <NavBar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
                 <CreatePost currentUser={currentUser} setAllPosts={setAllPosts}/>
                 <Filler/>
