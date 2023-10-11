@@ -6,7 +6,7 @@ import '../styles/home.css'
 
 function Home({allPosts, currentUser, displayMessage}){
 
-    console.log(allPosts)
+    console.log("React posts:", allPosts)
     let discussionPosts 
     if (allPosts !== undefined){
          discussionPosts = allPosts.map((p) =>(

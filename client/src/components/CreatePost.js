@@ -9,13 +9,18 @@ function CreatePost({currentUser, setAllPosts}){
     const [postErrorSx, setPostErrorSx] = useState({
         visibility:'hidden'
     })
-
     function handleSubmit(e){
         e.preventDefault()
+
+        const postData = {
+            question,
+            currentUser:currentUser.id
+        }
+
         fetch(`/posts`, {
             method: "POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({question, currentUser})
+            body:JSON.stringify(postData)
         })
         .then(r => r.json())
         .then(data => {

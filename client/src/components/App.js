@@ -37,6 +37,7 @@ function App(){
                 setDisplayMessage(data.errors)
             } else {
                 setAllPosts(data)
+                console.log("posts from Ruby:", data)
             }
         })
     }, [])

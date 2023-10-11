@@ -4,9 +4,11 @@ skip_before_action :authorized, only: :index
     wrap_parameters format: []
     
     def create
-        user = User.find(params[:currentUser][:id])
-            new_post = user.posts.create!(post_params)
+        user = User.find(params[:currentUser])
+            new_post = user.posts.create!(question: params[:question])
             render json: new_post, status: :created
+        # post = Post.create(question: params[:question])
+        # render json: user
     end
 
     def index
@@ -18,10 +20,6 @@ skip_before_action :authorized, only: :index
         end
     end
     private
-    
-    def post_params
-        params.permit(:question)
-    end
 
     def render_unproccesable_entity invalid
         render json: {errors: invalid.record.errors.full_messages}
