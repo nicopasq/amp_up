@@ -21,10 +21,9 @@ function CreatePost({ setAllPosts }){
         })
         .then(r => {
             if (r.ok){
-                r.json().then(data => console.log(data))
+                r.json().then(data => console.log('success', data))
             }
         })
-        // .then(data => console.log(data))
         // .then(data => {
         //     if (data.errors){
         //         setPostErrors(data.errors)
