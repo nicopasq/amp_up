@@ -4,12 +4,8 @@ skip_before_action :authorized, only: :index
     wrap_parameters format: []
     
     def create
-        user = User.find(params[:currentUser])
-        if (user)
-            user.posts.create!(params[:question])
-            new_post = user.posts.last
-            render json: {new_post: new_post}
-        end
+        post = Post.create!(params[:question])
+        render json: post
 
         # user = User.find(params[:currentUser])
         #     # new_post = user.posts.create!(params[:question])

@@ -17,7 +17,7 @@ function CreatePost({currentUser, setAllPosts}){
             headers:{
                 "Content-Type" : "application/json"
             },
-            body:JSON.stringify({question, currentUser:currentUser.id})
+            body:JSON.stringify({question})
         })
         .then(r => {
             if (r.ok){
