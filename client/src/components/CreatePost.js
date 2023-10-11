@@ -19,19 +19,15 @@ function CreatePost({ setAllPosts }){
             },
             body:JSON.stringify({question})
         })
-        .then(r => {
-            if (r.ok){
-                r.json().then(data => console.log('success', data))
+        .then(r => r.json())
+        .then(data => {
+            if (data.errors){
+                setPostErrors(data.errors)
+                setPostErrorSx({visibility:"block"})
+            } else{
+                setAllPosts((posts) => [...posts, data])
             }
         })
-        // .then(data => {
-        //     if (data.errors){
-        //         setPostErrors(data.errors)
-        //         setPostErrorSx({visibility:"block"})
-        //     } else{
-        //         setAllPosts((posts) => [...posts, data])
-        //     }
-        // })
     }
     return (
         <Container id="createPostContainer">

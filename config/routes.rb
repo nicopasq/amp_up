@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :responses
   resources :posts, only: [:create, :index]
 
   resources :users, only: [:create]
