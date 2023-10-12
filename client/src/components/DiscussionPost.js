@@ -1,10 +1,22 @@
 import { Paper, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import '../styles/discussionPost.css'
 import CreateResponseForm from "./CreateResponseForm";
 import ResponseDisplay from "./ResponseDisplay";
+import { PostContext } from "./PostContext";
+import { ResponseContext } from "./ResponseContext";
 
 function DiscussionPost({post}){
+    // const {newResponse} = useContext(ResponseContext)
+    // console.log('newResonse', newResponse)
+    console.log(post.responses)
+    const renderResponses = post.responses.map(r => {
+    })
+
+
+
+    // const display = <ResponseDisplay r={newResponse}/>
+
     return (
         <div className="discussionContainer">
             <Paper elevation={3} sx={{height:'43vh'}} >
@@ -14,13 +26,7 @@ function DiscussionPost({post}){
                     <Typography variant="h3"><u>Responses</u></Typography>
                     
                     <ul className="responseList">
-                        <ResponseDisplay/>                        
-                        <ResponseDisplay/>                        
-                        <ResponseDisplay/>                        
-                        <ResponseDisplay/>                        
-                        <ResponseDisplay/>                        
-                        <ResponseDisplay/>                        
-                        <ResponseDisplay/>                        
+                        {/* {display} */}
                     </ul>
                 </div>
 

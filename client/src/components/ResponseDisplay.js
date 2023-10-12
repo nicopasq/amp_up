@@ -1,21 +1,23 @@
-import { Typography } from '@mui/material'
-import React, { useContext } from 'react'
-import { UserContext } from './UserContext';
+import React from 'react'
 import '../styles/responseDisplay.css'
+import { Typography } from '@mui/material'
 
-function ResponseDisplay(){
-    const {currentUser} = useContext(UserContext)
+function ResponseDisplay({r}){
+console.log('response from ResponseDisplay', r.body)
+// console.log(r.user.id)
 
-    const bodySx = {
-        width:'10vw',
-    }
+if (r.user){
+    const username = r.user.username
+    const body = r.body
 
     return (
-        <li id='repsonseId' className='responseContainer'>
-            <Typography variant='h5'><u>{currentUser.username}</u></Typography>
-            <Typography variant='h6' sx={bodySx}>response body</Typography>
-        </li>
+        <div className='responseContainer'>
+            <Typography variant='h5'>{username}</Typography>
+            <Typography variant='h6'>{body}</Typography>
+        </div>
     )
+    
+}
 }
 
 export default ResponseDisplay;

@@ -3,10 +3,12 @@ import React, { useContext } from "react";
 import DiscussionPost from "./DiscussionPost";
 import '../styles/home.css'
 import { PostContext } from "./PostContext";
+import { ResponseContext } from "./ResponseContext";
 
 
 function Home({displayMessage}){
     const {allPosts} = useContext(PostContext)
+
     let discussionPosts 
     if (allPosts !== undefined){
         discussionPosts = allPosts.map((p) =>(

@@ -5,7 +5,7 @@ import { ResponseContext } from "./ResponseContext";
 
 function CreateResponseForm({post}){
     const {currentUser} = useContext(UserContext)
-    const {responseList, setResponseList} = useContext(ResponseContext)
+    const {setNewResponse} = useContext(ResponseContext)
 
     const [responseBody, setResponseBody] = useState({
         body: '',
@@ -31,7 +31,7 @@ function CreateResponseForm({post}){
             body:JSON.stringify(responseBody)
         })
         .then(r => r.json())
-        .then(data => console.log(data))
+        .then(data => setNewResponse(data))
     }
 
     return (
