@@ -1,11 +1,10 @@
 import { Paper, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import '../styles/discussionPost.css'
 import CreateResponseForm from "./CreateResponseForm";
 import ResponseDisplay from "./ResponseDisplay";
 
 function DiscussionPost({post}){
-
     return (
         <div className="discussionContainer">
             <Paper elevation={3} sx={{height:'43vh'}} >

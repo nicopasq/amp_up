@@ -11,8 +11,10 @@ import Filler from "./Filler";
 import MyResponses from "./MyResponses";
 import { UserContext } from "./UserContext";
 import { PostContext } from "./PostContext";
+import { ResponseContext } from "./ResponseContext";
 
 function App(){
+    const [responseList, setResponseList] = useState([])
     const [currentUser ,setCurrentUser] = useState('')
     const [errors, setErrors] = useState('')
     const [allPosts, setAllPosts] = useState([])
@@ -75,11 +77,13 @@ function App(){
                         <CreatePost setAllPosts={setAllPosts}/>
                         <Filler/>
                     </Route>
+                <ResponseContext.Provider value={{responseList, setResponseList}}>
                     <Route path ='/home'>
                         <NavBar/>
                         <Home allPosts={allPosts} displayMessage={displayMessage}/>
                         <Filler/>
                     </Route>
+                </ResponseContext.Provider>
                 </PostContext.Provider>
                     <Route path='/my_responses'>
                         <NavBar/>
