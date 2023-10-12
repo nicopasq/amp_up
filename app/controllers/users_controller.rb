@@ -7,13 +7,12 @@ wrap_parameters format: []
     def create
         new_user = User.create!(user_params)
         session[:user_id] = new_user.id
-        render json: new_user, status: :created
+        render json: new_user, only: [:id, :username], status: :created
     end
 
     def show
         user = User.find(session[:user_id])
-        render json: user, only: [:id, :username]
-        # {user: user, posts: user.posts}
+        render json: user
     end
 
     private 

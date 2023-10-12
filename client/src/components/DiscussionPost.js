@@ -9,9 +9,12 @@ import { ResponseContext } from "./ResponseContext";
 function DiscussionPost({post}){
     // const {newResponse} = useContext(ResponseContext)
     // console.log('newResonse', newResponse)
-    console.log(post.responses)
-    const renderResponses = post.responses.map(r => {
-    })
+    // console.log(post.responses)
+    const renderResponses = post.responses.map(r => (
+        <li key={r.id}>
+            <ResponseDisplay r={r}/>
+        </li>
+    ))
 
 
 
@@ -26,7 +29,7 @@ function DiscussionPost({post}){
                     <Typography variant="h3"><u>Responses</u></Typography>
                     
                     <ul className="responseList">
-                        {/* {display} */}
+                        {renderResponses}
                     </ul>
                 </div>
 

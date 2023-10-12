@@ -3,21 +3,14 @@ import '../styles/responseDisplay.css'
 import { Typography } from '@mui/material'
 
 function ResponseDisplay({r}){
-console.log('response from ResponseDisplay', r.body)
-// console.log(r.user.id)
+console.log(r)
 
-if (r.user){
-    const username = r.user.username
-    const body = r.body
-
-    return (
-        <div className='responseContainer'>
-            <Typography variant='h5'>{username}</Typography>
-            <Typography variant='h6'>{body}</Typography>
-        </div>
-    )
-    
-}
+return (
+    <div className='responseContainer'>
+        <Typography variant='h5'>{r.user.username}</Typography>
+        <Typography variant='h6'>{r.body}</Typography>
+    </div>
+)
 }
 
 export default ResponseDisplay;
