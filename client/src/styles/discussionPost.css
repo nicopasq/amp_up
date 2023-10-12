@@ -5,15 +5,9 @@
     border-top: 1px solid black;
     height: 6vh;
     position: relative;
-    top: 21.75vh;
-}
-
-h5{
-    position: relative;
     top: 2vh;
-    left: 1vh;
 }
 
 .input{
-    width: 43vw;
+    width: 42vw;
 }
