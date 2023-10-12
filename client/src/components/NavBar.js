@@ -1,5 +1,5 @@
 import { Avatar, Button, Paper, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import '../styles/navBar.css'
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { UserContext } from "./UserContext";
@@ -7,7 +7,9 @@ import { UserContext } from "./UserContext";
 function NavBar(){
     const {currentUser, setCurrentUser} = useContext(UserContext)
     const history = useHistory();
-    
+
+
+
     function logOut(){
         fetch(`/login`, {
             method: "DELETE", 

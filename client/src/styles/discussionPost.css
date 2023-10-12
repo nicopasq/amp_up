@@ -1,7 +1,7 @@
-#discussionContainer{
+.discussionContainer{
     margin-top: 8vh;
 }
-#addResponse{
+.addResponse{
     border-top: 1px solid black;
     height: 6vh;
     position: relative;
@@ -14,6 +14,6 @@ h5{
     left: 1vh;
 }
 
-#input{
+.input{
     width: 43vw;
 }

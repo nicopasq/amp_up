@@ -1,20 +1,20 @@
 import { Container, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import DiscussionPost from "./DiscussionPost";
 import '../styles/home.css'
+import { PostContext } from "./PostContext";
 
 
-function Home({allPosts, displayMessage}){
-
-    console.log("React posts:", allPosts)
+function Home({displayMessage}){
+    const {allPosts} = useContext(PostContext)
     let discussionPosts 
     if (allPosts !== undefined){
-         discussionPosts = allPosts.map((p) =>(
+        discussionPosts = allPosts.map((p) =>(
             <li key={p.id}>
-            <DiscussionPost post = {p} />
-        </li>
-    ))
-}
+                <DiscussionPost post = {p} />
+            </li>
+            ))
+        }
 
     let display = discussionPosts.length > 0 ? discussionPosts : <Typography variant="h3" sx={{color:"darkRed", textAlign:'center'}}>{displayMessage}</Typography>;
     return (

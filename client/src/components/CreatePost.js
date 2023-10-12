@@ -1,9 +1,11 @@
 import { Alert, Button, Container, Paper, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/createPost.css"
+import { PostContext } from "./PostContext";
 
 
-function CreatePost({ setAllPosts }){
+function CreatePost(){
+    const {setAllPosts} = useContext(PostContext)
     const [question, setQuestion] = useState('')
     const [postErrors, setPostErrors] = useState([])
     const [postErrorSx, setPostErrorSx] = useState({

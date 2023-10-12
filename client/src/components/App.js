@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Filler from "./Filler";
 import MyResponses from "./MyResponses";
 import { UserContext } from "./UserContext";
+import { PostContext } from "./PostContext";
 
 function App(){
     const [currentUser ,setCurrentUser] = useState('')
@@ -42,7 +43,6 @@ function App(){
             }
         })
     }, [])
-
     
     if (!currentUser) {
     return (
@@ -69,19 +69,21 @@ function App(){
         return (
             <Switch>
                 <UserContext.Provider value={{currentUser, setCurrentUser}}>
+                <PostContext.Provider value={{allPosts, setAllPosts}}>
                     <Route path ='/posts/new'>
                         <NavBar/>
                         <CreatePost setAllPosts={setAllPosts}/>
                         <Filler/>
                     </Route>
-                    <Route path='/my_responses'>
-                        <NavBar/>
-                        <MyResponses/>
-                        <Filler/>
-                    </Route>
                     <Route path ='/home'>
                         <NavBar/>
                         <Home allPosts={allPosts} displayMessage={displayMessage}/>
+                        <Filler/>
+                    </Route>
+                </PostContext.Provider>
+                    <Route path='/my_responses'>
+                        <NavBar/>
+                        <MyResponses/>
                         <Filler/>
                     </Route>
                 </UserContext.Provider>
