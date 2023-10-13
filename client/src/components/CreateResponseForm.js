@@ -3,9 +3,8 @@ import { UserContext } from "./UserContext";
 import { Button, TextField, Typography } from "@mui/material";
 import { ResponseContext } from "./ResponseContext";
 
-function CreateResponseForm({post}){
+function CreateResponseForm({post, setAllResponses}){
     const {currentUser} = useContext(UserContext)
-    const {setNewResponse} = useContext(ResponseContext)
 
     const [responseBody, setResponseBody] = useState({
         body: '',
@@ -31,7 +30,7 @@ function CreateResponseForm({post}){
             body:JSON.stringify(responseBody)
         })
         .then(r => r.json())
-        .then(data => setNewResponse(data))
+        .then(data => setAllResponses(allResponses => [...allResponses, data]))
     }
 
     return (

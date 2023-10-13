@@ -7,7 +7,7 @@ console.log(r)
 
 return (
     <div className='responseContainer'>
-        <Typography variant='h5'>{r.user.username}</Typography>
+        <Typography variant='h5'><u>{r.user.username}</u></Typography>
         <Typography variant='h6'>{r.body}</Typography>
     </div>
 )

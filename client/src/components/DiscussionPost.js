@@ -7,18 +7,29 @@ import { PostContext } from "./PostContext";
 import { ResponseContext } from "./ResponseContext";
 
 function DiscussionPost({post}){
-    // const {newResponse} = useContext(ResponseContext)
-    // console.log('newResonse', newResponse)
-    // console.log(post.responses)
-    const renderResponses = post.responses.map(r => (
-        <li key={r.id}>
-            <ResponseDisplay r={r}/>
-        </li>
-    ))
+    const [allResponses, setAllResponses] = useState([])
 
+    const renderResponses = post.responses.map(r => {
+        return (
+            <li key={r.id}>
+                <ResponseDisplay r={r}/>
+            </li>
+             )
+        })
 
+    const addResponse = allResponses.map(r => {
+        if (r.post_id === post.id){
+            return (
+                <li key={r.id}>
+                    <ResponseDisplay r={r}/>
+                </li>
+            )
+        }
+    })
 
-    // const display = <ResponseDisplay r={newResponse}/>
+    if (addResponse.length > 0){
+        addResponse.map(r => renderResponses.push(r))
+    }
 
     return (
         <div className="discussionContainer">
@@ -33,7 +44,7 @@ function DiscussionPost({post}){
                     </ul>
                 </div>
 
-                <CreateResponseForm post={post}/>
+                <CreateResponseForm post={post} setAllResponses={setAllResponses}/>
 
             </Paper>
         </div>
