@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
 import { Button, TextField, Typography } from "@mui/material";
+import { ResponseContext } from "./ResponseContext";
 
-function CreateResponseForm({post, setAllResponses}){
+function CreateResponseForm({post}){
     const {currentUser} = useContext(UserContext)
-
+    const {setAllResponses} = useContext(ResponseContext)
     const [responseBody, setResponseBody] = useState({
         body: '',
         post_id:post.id,
@@ -30,8 +31,7 @@ function CreateResponseForm({post, setAllResponses}){
         })
         .then(r => r.json())
         .then(data => {
-            setAllResponses(data)
-            // setAllResponses(allResponses => [...allResponses, data])
+            setAllResponses(allResponses => [...allResponses, data])
         })
     }
 

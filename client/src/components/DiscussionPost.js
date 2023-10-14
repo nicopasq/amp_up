@@ -1,13 +1,12 @@
 import { Paper, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import '../styles/discussionPost.css'
 import CreateResponseForm from "./CreateResponseForm";
 import ResponseDisplay from "./ResponseDisplay";
-import { PostContext } from "./PostContext";
 import { ResponseContext } from "./ResponseContext";
 
 function DiscussionPost({post}){
-    const [allResponses, setAllResponses] = useState([])
+    const {allResponses} = useContext(ResponseContext)
 
     const renderResponses = post.responses.map(r => {
         return (
@@ -26,11 +25,6 @@ function DiscussionPost({post}){
             )
         }
     })
-console.log(post.id)
-
-    function handleNewResponse(resposne){
-        setAllResponses(allResponses => [...allResponses, resposne])
-    }
     if (addResponse.length > 0){
         addResponse.map(r => renderResponses.push(r))
     }
@@ -48,7 +42,7 @@ console.log(post.id)
                     </ul>
                 </div>
 
-                <CreateResponseForm post={post} setAllResponses={handleNewResponse}/>
+                <CreateResponseForm post={post}/>
 
             </Paper>
         </div>

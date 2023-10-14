@@ -78,7 +78,7 @@ function App(){
                         <CreatePost setAllPosts={setAllPosts}/>
                         <Filler/>
                     </Route>
-                <ResponseContext.Provider value={{newResponse, setNewResponse}}>
+                <ResponseContext.Provider value={{allResponses, setAllResponses}}>
                     <Route path ='/home'>
                         <NavBar/>
                         <Home allPosts={allPosts} displayMessage={displayMessage}/>

@@ -2,7 +2,7 @@ import { Card, CardContent, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 function MyResponseCard({response}){
-    console.log(response)
+    // console.log(response)
     return (
             <Grid item xs={6}>
                     <Card>
