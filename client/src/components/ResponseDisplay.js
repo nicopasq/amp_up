@@ -3,7 +3,6 @@ import '../styles/responseDisplay.css'
 import { Typography } from '@mui/material'
 
 function ResponseDisplay({r}){
-console.log(r)
 
 return (
     <div className='responseContainer'>

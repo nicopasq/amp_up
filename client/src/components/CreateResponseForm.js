@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
 import { Button, TextField, Typography } from "@mui/material";
-import { ResponseContext } from "./ResponseContext";
 
 function CreateResponseForm({post, setAllResponses}){
     const {currentUser} = useContext(UserContext)

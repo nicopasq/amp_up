@@ -16,6 +16,7 @@ import { ResponseContext } from "./ResponseContext";
 function App(){
     const [newResponse, setNewResponse] = useState({})
     const [currentUser ,setCurrentUser] = useState('')
+    const [allResponses, setAllResponses] = useState([])
     const [errors, setErrors] = useState('')
     const [allPosts, setAllPosts] = useState([])
     const [displayMessage, setDisplayMessage] = useState('')
@@ -45,7 +46,6 @@ function App(){
             }
         })
     }, [])
-
     
     if (!currentUser) {
     return (
@@ -84,13 +84,13 @@ function App(){
                         <Home allPosts={allPosts} displayMessage={displayMessage}/>
                         <Filler/>
                     </Route>
-                </ResponseContext.Provider>
-                </PostContext.Provider>
                     <Route path='/my_responses'>
                         <NavBar/>
                         <MyResponses/>
                         <Filler/>
                     </Route>
+                </ResponseContext.Provider>
+                </PostContext.Provider>
                 </UserContext.Provider>
             </Switch> 
             )
