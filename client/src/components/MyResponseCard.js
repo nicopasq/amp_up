@@ -1,11 +1,21 @@
-import { Card, Grid } from "@mui/material";
-import React from "react";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
 
 function MyResponseCard({response}){
+    console.log(response)
     return (
-            <Grid item xs={2}>
+            <Grid item xs={6}>
                     <Card>
-                        <h2>{response.body}</h2>
+                        <CardContent>
+                            <div id="cardHead">
+                                <Typography variant="h5">
+                                    {response.post.question}
+                                </Typography>
+                            </div>
+                            <div id="cardBody">
+                                {response.body}
+                            </div>
+                        </CardContent>
                     </Card>
             </Grid>
     )

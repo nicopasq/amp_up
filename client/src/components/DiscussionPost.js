@@ -18,7 +18,7 @@ function DiscussionPost({post}){
         })
 
     const addResponse = allResponses.map(r => {
-        if (r.post_id === post.id){
+        if (r.post.id === post.id){
             return (
                 <li key={r.id}>
                     <ResponseDisplay r={r}/>
@@ -26,7 +26,11 @@ function DiscussionPost({post}){
             )
         }
     })
+console.log(post.id)
 
+    function handleNewResponse(resposne){
+        setAllResponses(allResponses => [...allResponses, resposne])
+    }
     if (addResponse.length > 0){
         addResponse.map(r => renderResponses.push(r))
     }
@@ -44,7 +48,7 @@ function DiscussionPost({post}){
                     </ul>
                 </div>
 
-                <CreateResponseForm post={post} setAllResponses={setAllResponses}/>
+                <CreateResponseForm post={post} setAllResponses={handleNewResponse}/>
 
             </Paper>
         </div>

@@ -29,7 +29,10 @@ function CreateResponseForm({post, setAllResponses}){
             body:JSON.stringify(responseBody)
         })
         .then(r => r.json())
-        .then(data => setAllResponses(allResponses => [...allResponses, data]))
+        .then(data => {
+            setAllResponses(data)
+            // setAllResponses(allResponses => [...allResponses, data])
+        })
     }
 
     return (
