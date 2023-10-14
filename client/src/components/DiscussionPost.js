@@ -31,7 +31,7 @@ function DiscussionPost({post}){
 
     return (
         <div className="discussionContainer">
-            <Paper elevation={3} sx={{height:'43vh'}} >
+            <Paper elevation={3} sx={{height:'fit-content'}} >
                 <Typography variant="h3" sx={{borderBottom:'1px solid black'}}>{post.question}</Typography>
                 
                 <div className="responses">

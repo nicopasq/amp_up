@@ -37,16 +37,16 @@ function CreateResponseForm({post}){
 
     return (
         <form onSubmit={postResponse} className="addResponse">
-            <Typography variant="h5" sx={{position:'relative', top:'2vh', left:'1vw'}}>Add Response</Typography>
+            <Typography variant="h5" sx={{position:'relative', top:'0vh', left:'1vw'}}>Add Response</Typography>
             
             <TextField
-            sx={{position:"relative", top:'-3.25vh', left:'10vw'}} 
+            sx={{position:"relative", top:'-6vh', left:'10vw'}} 
             className="input" 
             variant="filled"
             value={responseBody.body}
             onChange={e => handleChange(e)}/>
 
-            <Button sx={{position:"relative", top:"-2vh", left:'10vw'}}type="submit">
+            <Button sx={{position:"relative", top:"-3.5vh", left:'10vw'}}type="submit">
                 <Typography variant="h5">➜</Typography>
             </Button>
         </form>

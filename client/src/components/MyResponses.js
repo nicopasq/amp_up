@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
 import MyResponseCard from "./MyResponseCard";
 import { ResponseContext } from "./ResponseContext";
-
+import '../styles/myResponses.css'
 function MyResponses(){
     const { currentUser } = useContext(UserContext)
     const { allResponses } = useContext(ResponseContext)
@@ -21,9 +21,9 @@ console.log('allResponses', allResponses)
     }
 
     return (
-        <Container>
+        <Container id="responseCardContainer">
             <Typography variant="h1">My Responses Page</Typography>
-            <Grid container spacing={2} id="responseCardContainer">
+            <Grid container spacing={2}>
                 {responseCardDisplay}
             </Grid>
         </Container>
