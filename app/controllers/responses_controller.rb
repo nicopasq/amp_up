@@ -9,6 +9,19 @@ class ResponsesController < ApplicationController
             render json: new_response, status: :accepted
         end
     
+        def destroy
+                if session[:user_id] == params[:user_id]
+                    user = User.find(params[:user_id])
+                    response = user.responses.find(params[:response_id])
+                    user.responses.destroy(response)
+                    head :no_content
+                else
+                    render json: {e: false}, status: 200
+                end
+                # user = User.find(params[:user_id])
+                # response = user.responses.find(params[:response_id])
+                # render json: user
+        end
         private
     
         def invalid_response_msg invalid
