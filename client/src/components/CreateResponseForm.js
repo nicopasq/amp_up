@@ -31,7 +31,9 @@ function CreateResponseForm({post}){
         })
         .then(r => r.json())
         .then(data => {
-            setAllResponses(allResponses => [...allResponses, data])
+            if(data.id){
+                setAllResponses(allResponses => [...allResponses, data])
+            }
         })
     }
 

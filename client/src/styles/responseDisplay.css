@@ -1,6 +1,7 @@
 .responseContainer{
-    border-bottom: 1px solid black;
+    border: 1px solid black;
     width: 50vw;
+    height: fit-content;
     margin-left: 1.5vw;
 }
 
@@ -16,4 +17,10 @@ h5{
     overflow-y: scroll;
     position: relative;
     top: 1vh;
+}
+
+.actionBtns{
+    position: relative;
+    width: fit-content;
+    border: 1px solid black;
 }

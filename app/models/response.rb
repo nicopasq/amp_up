@@ -4,4 +4,5 @@ class Response < ApplicationRecord
 
     validates :user_id, presence: true
     validates :post_id, presence: true
+    validates :body, length:{minimum:2}
 end
