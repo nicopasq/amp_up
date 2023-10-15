@@ -8,9 +8,6 @@ return (
     <div className='responseContainer'>
         <Typography variant='h5'><u>{r.user.username}</u></Typography>
         <Typography variant='h6'>{r.body}</Typography>
-        <div className='actionBtns'>
-
-        </div>
     </div>
 )
 }
