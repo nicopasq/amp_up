@@ -12,7 +12,7 @@ function MyResponseCard({response}){
                                     {response.post.question}
                                 </Typography>
                             </div>
-                            <div id="cardBody">
+                            <div id="cardBody" style={{overflowWrap:'break-word'}}>
                                 {response.body}
                             </div>
                         </CardContent>

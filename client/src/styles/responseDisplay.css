@@ -9,6 +9,14 @@ h5{
     position: relative;
     top: -.25vh;
 }
+h6{
+    position: relative;
+    bottom: 3.5vh;
+    width: 45vw;
+    position: relative;
+    left: 2vw;
+    overflow-wrap: break-word;
+}
 
 .responseList{
     margin: 0;
@@ -20,7 +28,9 @@ h5{
 }
 
 .actionBtns{
-    position: relative;
     width: fit-content;
-    border: 1px solid black;
+    height: 3vh;
+    position: relative;
+    bottom: 3.5vh;
+    left: 43vw;
 }

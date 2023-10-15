@@ -6,8 +6,8 @@ function ResponseDisplay({r}){
 
 return (
     <div className='responseContainer'>
-        <div className='actionBtns'>
         <Typography variant='h5'><u>{r.user.username}</u></Typography>
+        <div className='actionBtns'>
             <Button variant='text'>✏️</Button>
             <Button variant='text'>🗑️</Button>
         </div>
