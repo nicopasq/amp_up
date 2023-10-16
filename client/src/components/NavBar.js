@@ -7,7 +7,7 @@ import { UserContext } from "./UserContext";
 function NavBar(){
     const {currentUser, setCurrentUser} = useContext(UserContext)
     const history = useHistory()
-
+    
     function logOut(){
         fetch(`/login`, {
             method: "DELETE", 

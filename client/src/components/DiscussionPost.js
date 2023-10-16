@@ -1,5 +1,5 @@
 import { Paper, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import '../styles/discussionPost.css'
 import CreateResponseForm from "./CreateResponseForm";
 import ResponseDisplay from "./ResponseDisplay";
@@ -8,25 +8,40 @@ import { ResponseContext } from "./ResponseContext";
 function DiscussionPost({post}){
     const {allResponses} = useContext(ResponseContext)
 
-    const renderResponses = post.responses.map(r => {
-        return (
-            <li key={r.id}>
-                <ResponseDisplay r={r}/>
-            </li>
-             )
-        })
-
-    const addResponse = allResponses.map(r => {
-        if (r.post.id === post.id){
+    const [renderResponses, setRenderResponses] = useState([]) 
+    
+    useEffect(()=> {
+        const postResponses = post.responses.map(r => {
             return (
-                <li key={r.id}>
-                    <ResponseDisplay r={r}/>
-                </li>
+            <li key={r.id}>
+                <ResponseDisplay r={r} deleteResponses={deleteResponses}/>
+            </li>
             )
-        }
-    })
-    if (addResponse.length > 0){
-        addResponse.map(r => renderResponses.push(r))
+        })
+        setRenderResponses(postResponses)
+    }, [])
+
+        const newResponses = allResponses.map(r => {
+            if (r.post.id === post.id){
+                return (
+                <li key={r.id}>
+                    <ResponseDisplay r={r} deleteResponses={deleteResponses}/>
+                </li>
+                )
+            }
+        })
+        newResponses.map(r => {
+            renderResponses.push(r)
+        })
+    
+    function deleteResponses(response){
+    //     const newRenderResponses = [...renderResponses].filter(r => {
+    //         if(parseInt(r.key) !== parseInt(response.id)){
+    //             return r
+    //         }
+    //     })
+    //     console.log(newRenderResponses)
+    //     setRenderResponses(newRenderResponses)
     }
 
     return (
@@ -42,7 +57,7 @@ function DiscussionPost({post}){
                     </ul>
                 </div>
 
-                <CreateResponseForm post={post}/>
+                <CreateResponseForm post={post} />
 
             </Paper>
         </div>
