@@ -30,17 +30,6 @@ function DiscussionPost({post}){
 
         setRenderResponses(renderResponses => [...renderResponses, responseEl])
     }
-    
-    // const newResponses = allResponses.map(r => {
-    //     if (r.post.id === post.id){
-    //         return (
-    //         <li key={r.id}>
-    //             <ResponseDisplay r={r} deleteResponses={deleteResponses}/>
-    //         </li>
-    //     )}
-    // })
-    // renderResponses.push(newResponses[newResponses.length-1])
-
 
     function deleteResponses(response){
         const responseEl = (
@@ -49,22 +38,6 @@ function DiscussionPost({post}){
             </li>
         )
         setRenderResponses(renderResponses => [...renderResponses].filter(r => r.key !== responseEl.key))
-        // const currentResponses = [...post.responses]
-        // const newResponseList = currentResponses.filter(r => r.id !== response.id)
-        // const newResponseElements = newResponseList.map(r => (
-        //         <li key={r.id}>
-        //             <ResponseDisplay r={r} deleteResponses={deleteResponses}/>
-        //         </li>
-        //         )
-        //     )
-        // setRenderResponses(newResponseElements)
-    //     const newRenderResponses = [...renderResponses].filter(r => {
-    //         if(parseInt(r.key) !== parseInt(response.id)){
-    //             return r
-    //         }
-    //     })
-    //     console.log(newRenderResponses)
-    //     setRenderResponses(newRenderResponses)
     }
 
     return (
