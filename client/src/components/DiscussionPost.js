@@ -21,20 +21,43 @@ function DiscussionPost({post}){
         setRenderResponses(postResponses)
     }, [])
 
-        const newResponses = allResponses.map(r => {
-            if (r.post.id === post.id){
-                return (
-                <li key={r.id}>
-                    <ResponseDisplay r={r} deleteResponses={deleteResponses}/>
-                </li>
-                )
-            }
-        })
-        newResponses.map(r => {
-            renderResponses.push(r)
-        })
+    function addResponse(response){
+        const responseEl = (
+            <li key={response.id}>
+                <ResponseDisplay r={response} deleteResponses={deleteResponses}/>
+            </li>
+            )
+
+        setRenderResponses(renderResponses => [...renderResponses, responseEl])
+    }
     
+    // const newResponses = allResponses.map(r => {
+    //     if (r.post.id === post.id){
+    //         return (
+    //         <li key={r.id}>
+    //             <ResponseDisplay r={r} deleteResponses={deleteResponses}/>
+    //         </li>
+    //     )}
+    // })
+    // renderResponses.push(newResponses[newResponses.length-1])
+
+
     function deleteResponses(response){
+        const responseEl = (
+            <li key={response.id}>
+                <ResponseDisplay r={response} deleteResponses={deleteResponses}/>
+            </li>
+        )
+        setRenderResponses(renderResponses => [...renderResponses].filter(r => r.key !== responseEl.key))
+        // const currentResponses = [...post.responses]
+        // const newResponseList = currentResponses.filter(r => r.id !== response.id)
+        // const newResponseElements = newResponseList.map(r => (
+        //         <li key={r.id}>
+        //             <ResponseDisplay r={r} deleteResponses={deleteResponses}/>
+        //         </li>
+        //         )
+        //     )
+        // setRenderResponses(newResponseElements)
     //     const newRenderResponses = [...renderResponses].filter(r => {
     //         if(parseInt(r.key) !== parseInt(response.id)){
     //             return r
@@ -57,7 +80,7 @@ function DiscussionPost({post}){
                     </ul>
                 </div>
 
-                <CreateResponseForm post={post} />
+                <CreateResponseForm post={post} addResponse={addResponse} />
 
             </Paper>
         </div>

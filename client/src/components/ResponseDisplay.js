@@ -14,24 +14,23 @@ function ResponseDisplay({r, deleteResponses}){
     }
 
     function deleteResponse(response){
-        console.log('clicked:', response)
-        // fetch(`/responses`, {
-        //     method:"DELETE",
-        //     headers:{"Content-Type":"application/json"},
-        //     body:JSON.stringify({user_id: response.user.id, response_id: response.id})
-        // })
-        // .then(r => {
-        //     if (r.ok){
-        //         deleteResponses(response)
-        //     }
-        // })
+        fetch(`/responses`, {
+            method:"DELETE",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({user_id: response.user.id, response_id: response.id})
+        })
+        .then(r => {
+            if (r.ok){
+                deleteResponses(response)
+            }
+        })
     }
 return (
     <div className='responseContainer'>
         <Typography variant='h5'><u>{r.user.username}</u></Typography>
         <div className='actionBtns' >
-            <Button variant='text'>✏️</Button>
-            <Button variant='text' onClick={()=> deleteResponse(r)}>🗑️</Button>
+            <Button variant='text' sx={visibility}>✏️</Button>
+            <Button variant='text' sx={visibility} onClick={()=> deleteResponse(r)}>🗑️</Button>
         </div>
         <Typography variant='h6'>{r.body}</Typography>
     </div>
