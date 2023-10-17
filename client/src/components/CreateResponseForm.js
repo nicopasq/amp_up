@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
 import { Button, TextField, Typography } from "@mui/material";
 import { ResponseContext } from "./ResponseContext";
-
-function CreateResponseForm({post}){
+import '../styles/createResponseForm.css'
+function CreateResponseForm({post, addResponse}){
     const {currentUser} = useContext(UserContext)
-    const {setAllResponses} = useContext(ResponseContext)
+    const {setNewResponses} = useContext(ResponseContext)
     const [responseBody, setResponseBody] = useState({
         body: '',
         post_id:post.id,
@@ -32,25 +32,27 @@ function CreateResponseForm({post}){
         .then(r => r.json())
         .then(data => {
             if(data.id){
-                setAllResponses(allResponses => [...allResponses, data])
+                addResponse(data)
+                setNewResponses(newResponses => [...newResponses, data])
             }
         })
     }
 
     return (
         <form onSubmit={postResponse} className="addResponse">
-            <Typography variant="h5" sx={{position:'relative', top:'0vh', left:'1vw'}}>Add Response</Typography>
+            <div className = "formBox">
+            <Typography variant="h5" className="left">Add Response</Typography>
             
             <TextField
-            sx={{position:"relative", top:'-6vh', left:'10vw'}} 
-            className="input" 
+            className="responseInput" 
             variant="filled"
             value={responseBody.body}
             onChange={e => handleChange(e)}/>
 
-            <Button sx={{position:"relative", top:"-3.5vh", left:'10vw'}}type="submit">
+            <Button className='postResponseBtn' type="submit">
                 <Typography variant="h5">➜</Typography>
             </Button>
+            </div>
         </form>
     )
 }

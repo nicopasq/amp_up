@@ -9,3 +9,8 @@
 h1{
     text-align: center;
 }
+
+.noDiscussions{
+    text-align: center;
+    color:darkRed;
+}

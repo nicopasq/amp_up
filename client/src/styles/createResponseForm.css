@@ -1,0 +1,33 @@
+.addResponse{
+    border-top: 1px solid black;
+    background-color: #DCC48E;
+    height: 7.75vh;
+    position: relative;
+}
+
+.formBox{
+    height: 6vh;
+    width: 100%;
+    position: relative;
+    left: 1vw;
+}
+
+.left{
+    width: fit-content;
+    position: relative;
+    top: 2.5vh;
+}
+
+
+.postResponseBtn{
+    position: relative;
+    left: 9vw;
+    bottom: 1.5vh;
+}
+
+.responseInput{
+    width: 42vw;
+    position: relative;
+    top: -2.5vh;
+    left: 9vw;
+}

@@ -1,13 +1,6 @@
 .discussionContainer{
     margin-top: 8vh;
-}
-.addResponse{
-    border-top: 1px solid black;
-    height: 6vh;
-    position: relative;
-    top: 2vh;
+    height: 40vh;
 }
 
-.input{
-    width: 42vw;
-}
+

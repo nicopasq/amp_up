@@ -69,7 +69,7 @@ function createUser(e){
                 variant="h4">Sign Up</Typography>
 
             <form  
-            id="loginForm"
+            id="signupForm"
             onSubmit={(e) => createUser(e)}
             style={loginFormStyle}>
                     <Grid item xs={4} sx={inputStyle}>

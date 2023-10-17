@@ -14,9 +14,8 @@ import { PostContext } from "./PostContext";
 import { ResponseContext } from "./ResponseContext";
 
 function App(){
-    const [newResponse, setNewResponse] = useState({})
     const [currentUser ,setCurrentUser] = useState('')
-    const [allResponses, setAllResponses] = useState([])
+    const [newResponses, setNewResponses] = useState([])
     const [errors, setErrors] = useState('')
     const [allPosts, setAllPosts] = useState([])
     const [displayMessage, setDisplayMessage] = useState('')
@@ -78,7 +77,7 @@ function App(){
                         <CreatePost setAllPosts={setAllPosts}/>
                         <Filler/>
                     </Route>
-                <ResponseContext.Provider value={{allResponses, setAllResponses}}>
+                <ResponseContext.Provider value={{newResponses, setNewResponses}}>
                     <Route path ='/home'>
                         <NavBar/>
                         <Home allPosts={allPosts} displayMessage={displayMessage}/>
