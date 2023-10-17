@@ -10,18 +10,14 @@ class ResponsesController < ApplicationController
         end
     
         def destroy
-                if session[:user_id] == params[:user_id]
-                    user = User.find(params[:user_id])
-                    response = user.responses.find(params[:response_id])
-                    user.responses.destroy(response)
-                    head :no_content
-                else
-                    render json: {e: false}, status: 200
-                end
-                # user = User.find(params[:user_id])
-                # response = user.responses.find(params[:response_id])
-                # render json: user
+            if session[:user_id] == params[:user_id]
+                Response.destroy(params[:response_id])
+                head :no_content
+            end
+            # else
+            #     render json: {e: false}, status: 200
         end
+               
         private
     
         def invalid_response_msg invalid

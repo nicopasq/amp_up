@@ -11,12 +11,12 @@ function DiscussionPost({post}){
 
     useEffect(() => {
         const postResponses = post.responses.map(r => {
-            return ( <ResponseDisplay response={r} key={r.id}/> ) 
+            return ( <ResponseDisplay response={r} key={r.id} removeResposne={removeResponse}/> ) 
         })
 
         const addResponse = newResponses.map(r => {
             if(r.post.id === post.id){
-                return ( <ResponseDisplay response={r} key={r.id}/> )
+                return ( <ResponseDisplay response={r} key={r.id} removeResposne={removeResponse}/> )
             }
         })
 
@@ -29,9 +29,13 @@ function DiscussionPost({post}){
     },[])
 
     function addResponse(response){
-        const newResponse = <ResponseDisplay response={response} key={response.id}/>
-        setRenderResponses(renderResponses => [...renderResponses, newResponse
-        ])
+        const newResponse = <ResponseDisplay response={response} key={response.id} removeResposne={removeResponse}/>
+        setRenderResponses(renderResponses => [...renderResponses, newResponse])
+    }
+
+    function removeResponse(response){
+        const filteredResponses = [...renderResponses].filter(r => r.key !== response.id)
+        setRenderResponses(filteredResponses)
     }
 
     return (
@@ -54,21 +58,3 @@ function DiscussionPost({post}){
  )
 }
 export default DiscussionPost;
-//    return (
-//        <div className="discussionContainer" key={post.id}>
-//         <Paper elevation={3} sx={{height:'fit-content'}} >
-//             <Typography variant="h3" sx={{borderBottom:'1px solid black'}}>{post.question}</Typography>
-            
-//             <div className="responses">
-//                 <Typography variant="h3"><u>Responses</u></Typography>
-                
-//                 <ul className="responseList">
-//                     {renderResponses}
-//                 </ul>
-//             </div>
-
-//             <CreateResponseForm post={post}/>
-
-//         </Paper>
-//     </div>
-// )
