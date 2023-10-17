@@ -3,45 +3,14 @@ import React, { useContext, useEffect, useState } from "react";
 import '../styles/discussionPost.css'
 import CreateResponseForm from "./CreateResponseForm";
 import ResponseDisplay from "./ResponseDisplay";
-import { ResponseContext } from "./ResponseContext";
+import { PostContext } from "./PostContext";
 
-function DiscussionPost({post}){
-    const {allResponses} = useContext(ResponseContext)
+function DiscussionPost(){
+   const {allPosts} = useContext(PostContext)
 
-    const [renderResponses, setRenderResponses] = useState([]) 
-    
-    useEffect(()=> {
-        const postResponses = post.responses.map(r => {
-            return (
-            <li key={r.id}>
-                <ResponseDisplay r={r} deleteResponses={deleteResponses}/>
-            </li>
-            )
-        })
-        setRenderResponses(postResponses)
-    }, [])
-
-    function addResponse(response){
-        const responseEl = (
-            <li key={response.id}>
-                <ResponseDisplay r={response} deleteResponses={deleteResponses}/>
-            </li>
-            )
-
-        setRenderResponses(renderResponses => [...renderResponses, responseEl])
-    }
-
-    function deleteResponses(response){
-        const responseEl = (
-            <li key={response.id}>
-                <ResponseDisplay r={response} deleteResponses={deleteResponses}/>
-            </li>
-        )
-        setRenderResponses(renderResponses => [...renderResponses].filter(r => r.key !== responseEl.key))
-    }
-
-    return (
-        <div className="discussionContainer">
+   return allPosts.map(post => {
+       return (
+           <div className="discussionContainer" key={post.id}>
             <Paper elevation={3} sx={{height:'fit-content'}} >
                 <Typography variant="h3" sx={{borderBottom:'1px solid black'}}>{post.question}</Typography>
                 
@@ -49,15 +18,16 @@ function DiscussionPost({post}){
                     <Typography variant="h3"><u>Responses</u></Typography>
                     
                     <ul className="responseList">
-                        {renderResponses}
+                        <ResponseDisplay currentPost = {post}/>
                     </ul>
                 </div>
 
-                <CreateResponseForm post={post} addResponse={addResponse} />
+                <CreateResponseForm post={post}/>
 
             </Paper>
         </div>
     )
-
+})
+    
 }
 export default DiscussionPost;

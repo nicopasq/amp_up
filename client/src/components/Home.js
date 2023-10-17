@@ -7,18 +7,7 @@ import { ResponseContext } from "./ResponseContext";
 
 
 function Home({displayMessage}){
-    const {allPosts} = useContext(PostContext)
 
-    let discussionPosts 
-    if (allPosts !== undefined){
-        discussionPosts = allPosts.map((p) =>(
-            <li key={p.id}>
-                <DiscussionPost post = {p} />
-            </li>
-            ))
-        }
-
-    let display = discussionPosts.length > 0 ? discussionPosts : <Typography variant="h3" sx={{color:"darkRed", textAlign:'center'}}>{displayMessage}</Typography>;
     return (
         <Container id="homeContainer">
             <div id="pageHead">
@@ -26,7 +15,7 @@ function Home({displayMessage}){
             </div>
             <div id="homeContent">
                 <ul style={{listStyle:'none'}}>
-                {display}
+                    <DiscussionPost/>
                 </ul>
             </div>
         </Container>

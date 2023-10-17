@@ -3,9 +3,9 @@ class ResponsesController < ApplicationController
         wrap_parameters format: []
     
         def create 
-            user = User.find(params[:user_id])
-            user.responses.create(body: params[:body], post_id:params[:post_id])
-            new_response = user.responses.last
+            post = Post.find(params[:post_id])
+            post.responses.create(body: params[:body], user_id:params[:user_id])
+            new_response = post.responses.last
             render json: new_response, status: :accepted
         end
     
