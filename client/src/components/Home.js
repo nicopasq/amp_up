@@ -1,12 +1,10 @@
 import { Container, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import React from "react";
 import DiscussionPost from "./DiscussionPost";
 import '../styles/home.css'
-import { PostContext } from "./PostContext";
 
 
-function Home({displayMessage}){
-    const {allPosts} = useContext(PostContext)
+function Home({allPosts, displayMessage}){
 
     const discussionPostJSX = allPosts.map(post => {
         return (<DiscussionPost post={post} key={post.id}/>)

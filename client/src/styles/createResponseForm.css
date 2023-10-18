@@ -1,5 +1,7 @@
 .addResponse{
     border-top: 1px solid black;
+    border-bottom-left-radius:5px ;
+    border-bottom-right-radius:5px ;
     background-color: #DCC48E;
     height: 7.75vh;
     position: relative;

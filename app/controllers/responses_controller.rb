@@ -4,7 +4,7 @@ class ResponsesController < ApplicationController
     
         def create 
             post = Post.find(params[:post_id])
-            post.responses.create(body: params[:body], user_id:params[:user_id])
+            post.responses.create!(body: params[:body], user_id:params[:user_id])
             new_response = post.responses.last
             render json: new_response, status: :accepted
         end

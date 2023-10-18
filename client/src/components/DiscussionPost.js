@@ -1,43 +1,23 @@
-import { Paper, Typography } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import { Paper, Typography} from "@mui/material";
+import React, { useContext } from "react";
 import '../styles/discussionPost.css'
 import CreateResponseForm from "./CreateResponseForm";
-import { ResponseContext } from "./ResponseContext";
 import ResponseDisplay from "./ResponseDisplay";
+import { ResponseContext } from "./ResponseContext";
 
 function DiscussionPost({post}){
-    const {newResponses} = useContext(ResponseContext)
-    const [renderResponses, setRenderResponses] = useState([])
+    const {changeResponses} = useContext(ResponseContext)
+    const existingResponses = post.responses
 
-    useEffect(() => {
-        const postResponses = post.responses.map(r => {
-            return ( <ResponseDisplay response={r} key={r.id} removeResposne={removeResponse}/> ) 
-        })
-
-        const addResponse = newResponses.map(r => {
-            if(r.post.id === post.id){
-                return ( <ResponseDisplay response={r} key={r.id} removeResposne={removeResponse}/> )
-            }
-        })
-
-        if (addResponse.length > 0){
-            const renderNewResponses = postResponses.concat(addResponse)
-            setRenderResponses(renderNewResponses)
-        } else {
-            setRenderResponses(postResponses)
-        }
-    },[])
-
-    function addResponse(response){
-        const newResponse = <ResponseDisplay response={response} key={response.id} removeResposne={removeResponse}/>
-        setRenderResponses(renderResponses => [...renderResponses, newResponse])
+    let renderList
+    if (changeResponses.length > 0){
+        renderList = existingResponses.concat(changeResponses)
+    } else {
+        renderList = existingResponses
     }
 
-    function removeResponse(response){
-        const filteredResponses = [...renderResponses].filter(r => r.key !== response.id)
-        setRenderResponses(filteredResponses)
-    }
-
+    const renderResponses = renderList.map(r => <ResponseDisplay response={r} key={r.id}/>)
+    console.log(renderList.filter(r => r.body !== "DELETE"))
     return (
          <Paper elevation={3} className="discussionContainer" >
              <Typography variant="h3" sx={{borderBottom:'1px solid black'}}>{post.question}</Typography>
@@ -50,9 +30,7 @@ function DiscussionPost({post}){
                  </ul>
              </div>
  
-             <CreateResponseForm post={post} 
-             addResponse={addResponse}
-             />
+             <CreateResponseForm post={post}/>
  
          </Paper>
  )

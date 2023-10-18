@@ -1,11 +1,9 @@
 import { Alert, Button, Container, Paper, TextField, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "../styles/createPost.css"
-import { PostContext } from "./PostContext";
 
 
-function CreatePost(){
-    const {setAllPosts} = useContext(PostContext)
+function CreatePost({setPosts}){
     const [question, setQuestion] = useState('')
     const [postErrors, setPostErrors] = useState([])
     const [postErrorSx, setPostErrorSx] = useState({
@@ -27,7 +25,7 @@ function CreatePost(){
                 setPostErrors(data.errors)
                 setPostErrorSx({visibility:"block"})
             } else{
-                setAllPosts((posts) => [...posts, data])
+                setPosts(data)
             }
         })
     }

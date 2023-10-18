@@ -1,11 +1,17 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
-import { Button, TextField, Typography } from "@mui/material";
-import { ResponseContext } from "./ResponseContext";
+import { Alert, Button, TextField, Typography } from "@mui/material";
 import '../styles/createResponseForm.css'
+import { ResponseContext } from "./ResponseContext";
+
 function CreateResponseForm({post, addResponse}){
     const {currentUser} = useContext(UserContext)
-    const {setNewResponses} = useContext(ResponseContext)
+    const {setChangeResponses} = useContext(ResponseContext)
+    const [errors, setErrors] = useState([])
+    const [visibility, setVisibility] = useState({
+        visibility: 'hidden',
+        position:'relative'
+    })
     const [responseBody, setResponseBody] = useState({
         body: '',
         post_id:post.id,
@@ -13,40 +19,42 @@ function CreateResponseForm({post, addResponse}){
     })
 
     function handleChange(e){
-        const newResponseBody = {
-            ...responseBody, 
-            body:e.target.value
-        }
-        setResponseBody(newResponseBody)
+        setResponseBody({...responseBody, body: e.target.value})
     }
 
-    function postResponse(e){
+    function handleSubmit(e){
         e.preventDefault();
-        fetch(`/responses`,{
+
+        fetch(`/responses`, {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify(responseBody)
         })
-        .then(r => r.json())
+        .then(r =>r.json())
         .then(data => {
-            if(data.id){
-                addResponse(data)
-                setNewResponses(newResponses => [...newResponses, data])
+            if (data.errors){
+                setErrors(data.errors)
+                setVisibility({visibility:'block'})
+                setTimeout(() => {setVisibility({visibility:'hidden'})},'3000')
+            } else {
+                setChangeResponses(changeResponses => [...changeResponses, data])
             }
         })
     }
 
     return (
-        <form onSubmit={postResponse} className="addResponse">
+        <>
+        <Alert severity="error" className="responseAlert" sx={visibility}>{errors}</Alert>
+        <form className="addResponse" onSubmit={(e) => handleSubmit(e)}>
+            <Typography variant="h5" className="left">Add Response</Typography>            
             <div className = "formBox">
-            <Typography variant="h5" className="left">Add Response</Typography>
-            
             <TextField
             className="responseInput" 
             variant="filled"
-            value={responseBody.body}
+            name="body"
+            // value={responseBody.body}
             onChange={e => handleChange(e)}/>
 
             <Button className='postResponseBtn' type="submit">
@@ -54,6 +62,7 @@ function CreateResponseForm({post, addResponse}){
             </Button>
             </div>
         </form>
+        </>
     )
 }
 

@@ -10,12 +10,12 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Filler from "./Filler";
 import MyResponses from "./MyResponses";
 import { UserContext } from "./UserContext";
-import { PostContext } from "./PostContext";
 import { ResponseContext } from "./ResponseContext";
 
 function App(){
+    const [changeResponses, setChangeResponses] = useState([])
+
     const [currentUser ,setCurrentUser] = useState('')
-    const [newResponses, setNewResponses] = useState([])
     const [errors, setErrors] = useState('')
     const [allPosts, setAllPosts] = useState([])
     const [displayMessage, setDisplayMessage] = useState('')
@@ -41,11 +41,15 @@ function App(){
                 setDisplayMessage(data.errors)
             } else {
                 setAllPosts(data)
-                console.log("posts from Ruby:", data)
             }
         })
     }, [])
+
     
+function setPosts(data){
+    setAllPosts(allPosts => [...allPosts, data])
+}
+
     if (!currentUser) {
     return (
         <>
@@ -71,25 +75,23 @@ function App(){
         return (
             <Switch>
                 <UserContext.Provider value={{currentUser, setCurrentUser}}>
-                <PostContext.Provider value={{allPosts, setAllPosts}}>
                     <Route path ='/posts/new'>
                         <NavBar/>
-                        <CreatePost setAllPosts={setAllPosts}/>
+                        <CreatePost setPosts={setPosts}/>
                         <Filler/>
                     </Route>
-                <ResponseContext.Provider value={{newResponses, setNewResponses}}>
+                    <ResponseContext.Provider value={{changeResponses, setChangeResponses}}>
                     <Route path ='/home'>
                         <NavBar/>
                         <Home allPosts={allPosts} displayMessage={displayMessage}/>
                         <Filler/>
                     </Route>
+                    </ResponseContext.Provider>
                     <Route path='/my_responses'>
                         <NavBar/>
                         <MyResponses/>
                         <Filler/>
                     </Route>
-                </ResponseContext.Provider>
-                </PostContext.Provider>
                 </UserContext.Provider>
             </Switch> 
             )
