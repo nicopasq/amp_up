@@ -8,16 +8,15 @@ import NavBar from "./NavBar";
 import CreatePost from "./CreatePost";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Filler from "./Filler";
-import MyResponses from "./MyResponses";
+import MyProfile from "./MyProfile";
 import { UserContext } from "./UserContext";
 import { ResponseContext } from "./ResponseContext";
 
 function App(){
+    const [allPosts, setAllPosts] = useState([])
     const [changeResponses, setChangeResponses] = useState([])
-
     const [currentUser ,setCurrentUser] = useState('')
     const [errors, setErrors] = useState('')
-    const [allPosts, setAllPosts] = useState([])
     const [displayMessage, setDisplayMessage] = useState('')
     const [errorSx, setErrorSx] = useState({
         visibility:"hidden"
@@ -41,6 +40,9 @@ function App(){
                 setDisplayMessage(data.errors)
             } else {
                 setAllPosts(data)
+                setChangeResponses(data.map(post => {
+                    return {post_id: post.id, responses: post.responses}
+                }))
             }
         })
     }, [])
@@ -86,12 +88,12 @@ function setPosts(data){
                         <Home allPosts={allPosts} displayMessage={displayMessage}/>
                         <Filler/>
                     </Route>
-                    </ResponseContext.Provider>
-                    <Route path='/my_responses'>
+                    <Route path='/profile'>
                         <NavBar/>
-                        <MyResponses/>
+                        <MyProfile/>
                         <Filler/>
                     </Route>
+                    </ResponseContext.Provider>
                 </UserContext.Provider>
             </Switch> 
             )

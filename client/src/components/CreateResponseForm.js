@@ -6,7 +6,7 @@ import { ResponseContext } from "./ResponseContext";
 
 function CreateResponseForm({post, addResponse}){
     const {currentUser} = useContext(UserContext)
-    const {setChangeResponses} = useContext(ResponseContext)
+    const {changeResponses, setChangeResponses} = useContext(ResponseContext)
     const [errors, setErrors] = useState([])
     const [visibility, setVisibility] = useState({
         visibility: 'hidden',
@@ -39,7 +39,12 @@ function CreateResponseForm({post, addResponse}){
                 setVisibility({visibility:'block'})
                 setTimeout(() => {setVisibility({visibility:'hidden'})},'3000')
             } else {
-                setChangeResponses(changeResponses => [...changeResponses, data])
+                const addedResponses = changeResponses.map(obj => {
+                    if (obj.post_id === data.post.id){
+                        obj.responses.push(data)
+                    }
+                })
+                setChangeResponses(addedResponses)
             }
         })
     }
@@ -54,7 +59,7 @@ function CreateResponseForm({post, addResponse}){
             className="responseInput" 
             variant="filled"
             name="body"
-            // value={responseBody.body}
+            value={responseBody.body}
             onChange={e => handleChange(e)}/>
 
             <Button className='postResponseBtn' type="submit">

@@ -37,9 +37,9 @@ function NavBar(){
                     </Typography>
                 </Link>
 
-                <Link to='/my_responses'>
+                <Link to='/profile'>
                     <Typography variant="h4" className="navBtn" sx={{marginTop:'4vh'}}>
-                        My Responses
+                        Profile
                     </Typography>
                 </Link>
             </div>

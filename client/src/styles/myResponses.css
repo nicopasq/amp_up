@@ -1,4 +1,35 @@
-#responseCardContainer{
+.myProfileContainer{
     height: 100vh;
-    overflow-y:scroll;
+}
+
+.responseCardContainer{
+    height: 45vh;
+    overflow-y: scroll;
+}
+
+#header{
+    border-bottom: 2px solid black;
+    width: 105%;
+    height: 15.25vh;
+    position: relative;
+    right: 1.75vw;
+}
+
+#userInfo{
+    position: relative;
+    top: 7vh;
+}
+#profileAvatar{
+    background-color: orange;
+    scale: 2;
+    position: relative;
+    top: 3vh;
+    left: 1vh
+}
+#userResponses{
+    position: relative;
+    top: 13vh;
+}
+#userResponses .myResponsesH2{
+    margin-bottom: 15px;
 }

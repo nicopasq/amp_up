@@ -1,5 +1,5 @@
 import { Paper, Typography} from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import '../styles/discussionPost.css'
 import CreateResponseForm from "./CreateResponseForm";
 import ResponseDisplay from "./ResponseDisplay";
@@ -7,25 +7,33 @@ import { ResponseContext } from "./ResponseContext";
 
 function DiscussionPost({post}){
     const {changeResponses} = useContext(ResponseContext)
-    const existingResponses = post.responses
 
-    let renderList = []
-     if (changeResponses.length){
-        renderList = existingResponses.concat(changeResponses)
-    } else {
-        renderList = existingResponses
-    }
-
-    const renderResponses = renderList.map(r => {
-        if (r.post.id === post.id){
-            return (
+    const renderResponses = changeResponses.map(obj => {
+       return obj.responses.map(r => {
+            if(r.post.id === post.id){
+               return (
                 <ResponseDisplay response={r} key={r.id} removeResponse={removeResponse}/>
-            )
-        }
+               ) 
+            }
+        })
     })
 
+
+    //  if (changeResponses.length){
+    //     renderList = existingResponses.concat(changeResponses)
+    // } else {
+    //     renderList = existingResponses
+    // }
+
+    // const renderResponses = renderList.map(r => {
+    //     if (r.post.id === post.id){
+    //         return (
+    //             <ResponseDisplay response={r} key={r.id} removeResponse={removeResponse}/>
+    //         )
+    //     }
+    // })
+
     function removeResponse(response){
-        console.log(response)
     }
 
     return (
