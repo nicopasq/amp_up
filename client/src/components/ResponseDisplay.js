@@ -9,15 +9,15 @@ function ResponseDisplay({response}){
         visibility: 'hidden'
     }
 
-    if (currentUser.id === response.id){
+    if (currentUser.id === response.user.id){
         buttonSx.visibility = {visibility: 'block'}
     }
 
     function deleteResposne(){}
 
     return (
-        <li className='responseContainer' key={response.id}>
-            <Typography variant='h5'><u>{response.username}</u></Typography>
+        <li className='responseContainer' key={response.user.id}>
+            <Typography variant='h5'><u>{response.user.username}</u></Typography>
             <div className='actionBtns'>
                 <Button variant='text' sx={buttonSx}>✏️</Button>
                 <Button variant='text' sx={buttonSx} 
