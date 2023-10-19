@@ -9,15 +9,25 @@ function DiscussionPost({post}){
     const {changeResponses} = useContext(ResponseContext)
     const existingResponses = post.responses
 
-    let renderList
-    if (changeResponses.length > 0){
+    let renderList = []
+     if (changeResponses.length){
         renderList = existingResponses.concat(changeResponses)
     } else {
         renderList = existingResponses
     }
 
-    const renderResponses = renderList.map(r => <ResponseDisplay response={r} key={r.id}/>)
-    console.log(renderList.filter(r => r.body !== "DELETE"))
+    const renderResponses = renderList.map(r => {
+        if (r.post.id === post.id){
+            return (
+                <ResponseDisplay response={r} key={r.id} removeResponse={removeResponse}/>
+            )
+        }
+    })
+
+    function removeResponse(response){
+        console.log(response)
+    }
+
     return (
          <Paper elevation={3} className="discussionContainer" >
              <Typography variant="h3" sx={{borderBottom:'1px solid black'}}>{post.question}</Typography>

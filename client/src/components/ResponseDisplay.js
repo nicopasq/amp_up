@@ -2,8 +2,10 @@ import React, { useContext } from 'react'
 import '../styles/responseDisplay.css'
 import { Button, Typography } from '@mui/material'
 import { UserContext } from './UserContext'
+import { ResponseContext } from "./ResponseContext";
 
-function ResponseDisplay({response}){
+function ResponseDisplay({response, removeResponse}){
+    const {setChangeResponses} = useContext(ResponseContext)
     const {currentUser} = useContext(UserContext)
     const buttonSx = {
         visibility: 'hidden'
@@ -13,7 +15,17 @@ function ResponseDisplay({response}){
         buttonSx.visibility = {visibility: 'block'}
     }
 
-    function deleteResposne(){}
+    function deleteResposne(response){
+        fetch(`/responses`, {
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({user_id: currentUser.id, response_id: response.id})
+        })
+        setChangeResponses(changeResponses => [...changeResponses].filter(r => r.id !== response.id))
+        removeResponse(response)
+    }
 
     return (
         <li className='responseContainer' key={response.user.id}>
