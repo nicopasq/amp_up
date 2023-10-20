@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
 import { Alert, Button, TextField, Typography } from "@mui/material";
 import '../styles/createResponseForm.css'
-import { ResponseContext } from "./ResponseContext";
+import { PostContext } from "./PostContext";
 
-function CreateResponseForm({post, addResponse}){
+function CreateResponseForm({post}){
+    const {allPosts, setAllPosts} = useContext(PostContext)
     const {currentUser} = useContext(UserContext)
-    const {changeResponses, setChangeResponses} = useContext(ResponseContext)
     const [errors, setErrors] = useState([])
     const [visibility, setVisibility] = useState({
         visibility: 'hidden',
@@ -39,12 +39,14 @@ function CreateResponseForm({post, addResponse}){
                 setVisibility({visibility:'block'})
                 setTimeout(() => {setVisibility({visibility:'hidden'})},'3000')
             } else {
-                const addedResponses = changeResponses.map(obj => {
-                    if (obj.post_id === data.post.id){
-                        obj.responses.push(data)
+                const addedResponses = [...allPosts].map(p => {
+                    if(p.id === post.id){
+                        p.responses.push(data)
+                        return p
                     }
+                    return p
                 })
-                setChangeResponses(addedResponses)
+                setAllPosts(addedResponses)
             }
         })
     }

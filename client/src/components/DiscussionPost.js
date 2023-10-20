@@ -1,40 +1,11 @@
 import { Paper, Typography} from "@mui/material";
-import React, { useContext, useState } from "react";
+import React from "react";
 import '../styles/discussionPost.css'
 import CreateResponseForm from "./CreateResponseForm";
 import ResponseDisplay from "./ResponseDisplay";
-import { ResponseContext } from "./ResponseContext";
 
 function DiscussionPost({post}){
-    const {changeResponses} = useContext(ResponseContext)
-
-    const renderResponses = changeResponses.map(obj => {
-       return obj.responses.map(r => {
-            if(r.post.id === post.id){
-               return (
-                <ResponseDisplay response={r} key={r.id} removeResponse={removeResponse}/>
-               ) 
-            }
-        })
-    })
-
-
-    //  if (changeResponses.length){
-    //     renderList = existingResponses.concat(changeResponses)
-    // } else {
-    //     renderList = existingResponses
-    // }
-
-    // const renderResponses = renderList.map(r => {
-    //     if (r.post.id === post.id){
-    //         return (
-    //             <ResponseDisplay response={r} key={r.id} removeResponse={removeResponse}/>
-    //         )
-    //     }
-    // })
-
-    function removeResponse(response){
-    }
+    const renderResponses = post.responses.map(r => <ResponseDisplay response={r} key={r.id}/>)
 
     return (
          <Paper elevation={3} className="discussionContainer" >

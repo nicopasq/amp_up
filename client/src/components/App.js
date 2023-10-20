@@ -10,11 +10,10 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Filler from "./Filler";
 import MyProfile from "./MyProfile";
 import { UserContext } from "./UserContext";
-import { ResponseContext } from "./ResponseContext";
+import { PostContext } from "./PostContext";
 
 function App(){
     const [allPosts, setAllPosts] = useState([])
-    const [changeResponses, setChangeResponses] = useState([])
     const [currentUser ,setCurrentUser] = useState('')
     const [errors, setErrors] = useState('')
     const [displayMessage, setDisplayMessage] = useState('')
@@ -40,9 +39,6 @@ function App(){
                 setDisplayMessage(data.errors)
             } else {
                 setAllPosts(data)
-                setChangeResponses(data.map(post => {
-                    return {post_id: post.id, responses: post.responses}
-                }))
             }
         })
     }, [])
@@ -77,23 +73,23 @@ function setPosts(data){
         return (
             <Switch>
                 <UserContext.Provider value={{currentUser, setCurrentUser}}>
-                    <Route path ='/posts/new'>
-                        <NavBar/>
-                        <CreatePost setPosts={setPosts}/>
-                        <Filler/>
-                    </Route>
-                    <ResponseContext.Provider value={{changeResponses, setChangeResponses}}>
-                    <Route path ='/home'>
-                        <NavBar/>
-                        <Home allPosts={allPosts} displayMessage={displayMessage}/>
-                        <Filler/>
-                    </Route>
-                    <Route path='/profile'>
-                        <NavBar/>
-                        <MyProfile/>
-                        <Filler/>
-                    </Route>
-                    </ResponseContext.Provider>
+                    <PostContext.Provider value={{allPosts, setAllPosts}}>
+                        <Route path ='/posts/new'>
+                            <NavBar/>
+                            <CreatePost setPosts={setPosts}/>
+                            <Filler/>
+                        </Route>
+                        <Route path ='/home'>
+                            <NavBar/>
+                            <Home displayMessage={displayMessage}/>
+                            <Filler/>
+                        </Route>
+                        <Route path='/profile'>
+                            <NavBar/>
+                            <MyProfile/>
+                            <Filler/>
+                        </Route>
+                    </PostContext.Provider>
                 </UserContext.Provider>
             </Switch> 
             )
