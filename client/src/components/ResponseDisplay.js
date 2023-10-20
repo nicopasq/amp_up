@@ -7,7 +7,7 @@ import { PostContext } from './PostContext';
 
 function ResponseDisplay({response}){
     const {allPosts, setAllPosts} = useContext(PostContext)
-    const [updateFormVisibility ,setUpdateFormVisibility] = useState({visibility:'hidden'})
+    const [formDisplay, setFormDisplay] = useState({display:'none'})
     const {currentUser} = useContext(UserContext)
     const buttonSx = {
         visibility: 'hidden'
@@ -37,14 +37,12 @@ function ResponseDisplay({response}){
             setAllPosts(filteredResponses)
         })
     }
-
     function updateResponse(response){
-        setUpdateFormVisibility({visibility:'block'})
+        setFormDisplay({display:'block'})
     }
-    
     return (
         <li className='responseContainer' key={response.id}>
-            <UpdateForm visibility={updateFormVisibility} response={response}/>
+            <UpdateForm display={formDisplay} setFormDisplay={setFormDisplay} response={response}/>
             <Typography variant='h5'><u>{response.user.username}</u></Typography>
             <div className='actionBtns'>
                 <Button variant='text' sx={buttonSx} onClick={() => updateResponse(response)}>✏️</Button>
