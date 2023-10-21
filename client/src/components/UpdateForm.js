@@ -37,6 +37,7 @@ function UpdateForm({response, display, setFormDisplay}){
                 onChange={e => setUpdatedResponseBody(e.target.value)}
                 />
             <Button type="submit" className="submitUpdateForm">Change Response</Button>
+            <Button variant='text' className="cancelBtn" onClick={() => setFormDisplay({display:'none'})}>Cancel</Button>
         </form>
     )
 }

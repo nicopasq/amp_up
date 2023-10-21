@@ -1,10 +1,11 @@
 .updateResponse{
     background-color: white;
     width: 40vw;
+    height: 7vh;
     scale: 1.2;
     z-index: 100;
     position: relative;
-    top: .7vh;
+    top: .8vh;
     left: 5.23vw;
 }
 
@@ -15,4 +16,10 @@
 .submitUpdateForm{
     position: relative;
     left: 1.5vw;
+}
+
+.cancelBtn{
+    position: relative;
+    left: 31.5vw;
+    bottom: 3vh;
 }
