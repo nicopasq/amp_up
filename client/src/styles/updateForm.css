@@ -1,11 +1,11 @@
 .updateResponse{
     background-color: white;
     width: 40vw;
-    scale: 1.19;
+    scale: 1.2;
     z-index: 100;
-    position: absolute;
-    top: .6vh;
-    left: 8.65vw;
+    position: relative;
+    top: .7vh;
+    left: 5.23vw;
 }
 
 .updateBody{

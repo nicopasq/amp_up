@@ -1,20 +1,20 @@
 .responseContainer{
     border: 1px solid black;
     width: 50vw;
-    height: fit-content;
+    height: 10vh;
     margin-left: 1.5vw;
     margin-bottom: 5px;
+    position:sticky;
 }
 
 h5{
-    position: relative;
+    position: absolute;
     top: -.25vh;
 }
 h6{
-    position: relative;
+    position: absolute;
     bottom: 3.5vh;
     width: 45vw;
-    position: relative;
     left: 2vw;
     overflow-wrap: break-word;
 }
@@ -31,7 +31,7 @@ h6{
 .actionBtns{
     width: fit-content;
     height: 3vh;
-    position: relative;
-    bottom: 3.5vh;
+    position: absolute;
+    top: .5vh;
     left: 43vw;
 }

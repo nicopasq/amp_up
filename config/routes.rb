@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :responses, only: [:create]
-  delete '/responses', to: 'responses#destroy'
+  resources :responses, only: [:create, :update, :destroy]
+
   resources :posts, only: [:create, :index]
 
   resources :users, only: [:create]

@@ -9,9 +9,18 @@ class ResponsesController < ApplicationController
             render json: new_response, status: :accepted
         end
     
+        def update
+            if session[:user_id] == params[:user_id]
+                response =Response.find(params[:response_id])
+                response.update!(body: params[:body])
+            end
+            byebug
+        end
+
         def destroy
             if session[:user_id] == params[:user_id]
-                Response.destroy(params[:response_id])
+                response = Response.find(params[:response_id])
+                response.destroy
                 head :no_content
             end
             # else

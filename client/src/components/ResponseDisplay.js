@@ -18,7 +18,7 @@ function ResponseDisplay({response}){
     }
 
     function deleteResposne(response){
-        fetch(`/responses`, {
+        fetch(`/responses/destroy`, {
             method:"DELETE",
             headers:{
                 "Content-Type":"application/json"
@@ -37,15 +37,13 @@ function ResponseDisplay({response}){
             setAllPosts(filteredResponses)
         })
     }
-    function updateResponse(response){
-        setFormDisplay({display:'block'})
-    }
+
     return (
         <li className='responseContainer' key={response.id}>
             <UpdateForm display={formDisplay} setFormDisplay={setFormDisplay} response={response}/>
             <Typography variant='h5'><u>{response.user.username}</u></Typography>
             <div className='actionBtns'>
-                <Button variant='text' sx={buttonSx} onClick={() => updateResponse(response)}>✏️</Button>
+                <Button variant='text' sx={buttonSx} onClick={() => setFormDisplay({display:'block'})}>✏️</Button>
                 <Button variant='text' sx={buttonSx} onClick={() => deleteResposne(response)}>🗑️</Button>
             </div>
             <Typography variant='h6'>{response.body}</Typography>
