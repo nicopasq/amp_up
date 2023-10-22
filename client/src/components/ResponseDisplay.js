@@ -18,16 +18,16 @@ function ResponseDisplay({response}){
     }
 
     function deleteResposne(response){
-        fetch(`/responses/destroy`, {
+        fetch(`/responses/${response.id}`, {
             method:"DELETE",
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify({user_id: currentUser.id, response_id: response.id})
+            body:JSON.stringify({user_id: currentUser.id})
         })
         .then(() => {
             const filteredResponses = [...allPosts].filter(p => {
-                if(p.id === response.post.id){
+                if(p?.id === response.post_id){
                     const filtered = p.responses.filter(resp => resp.id !== response.id)
                     p.responses = filtered
                     return p

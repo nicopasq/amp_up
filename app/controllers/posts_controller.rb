@@ -13,8 +13,9 @@ class PostsController < ApplicationController
             if posts.count > 0
                 render json: posts
             else
-                render json: {errors: 'There a currently no discussions'}
+                render json: {error:"There are currently no Discussions."}
             end
+            
         end
         private
     

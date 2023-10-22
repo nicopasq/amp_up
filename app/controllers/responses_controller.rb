@@ -3,28 +3,31 @@ class ResponsesController < ApplicationController
         wrap_parameters format: []
     
         def create 
-            post = Post.find(params[:post_id])
-            post.responses.create!(body: params[:body], user_id:params[:user_id])
-            new_response = post.responses.last
-            render json: new_response, status: :accepted
+            current_user = User.find(params[:user_id])
+            current_user.responses.create!(body: params[:body], post_id:params[:post_id])
+            new_response = current_user.responses.last
+            render json:new_response
+
         end
     
         def update
-            if session[:user_id] == params[:user_id]
-                response =Response.find(params[:response_id])
-                response.update!(body: params[:body])
+            current_user = User.find(params[:user_id])
+            response = current_user.responses.find(params[:id])
+            if response
+                response.update(body:params[:body])
+                render json: response
             end
-            byebug
         end
 
         def destroy
-            if session[:user_id] == params[:user_id]
-                response = Response.find(params[:response_id])
+            current_user = User.find(params[:user_id])
+            response = current_user.responses.find(params[:id])
+            if response
                 response.destroy
                 head :no_content
+            else
+                render json: {error: "Response not found, can not be removed"}
             end
-            # else
-            #     render json: {e: false}, status: 200
         end
                
         private

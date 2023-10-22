@@ -35,18 +35,13 @@ function App(){
         fetch(`/posts`)
         .then(r => r.json())
         .then(data => {
-            if (data.errors){
-                setDisplayMessage(data.errors)
+            if (data.error){
+                setDisplayMessage(data.error)
             } else {
                 setAllPosts(data)
             }
         })
     }, [])
-
-    
-function setPosts(data){
-    setAllPosts(allPosts => [...allPosts, data])
-}
 
     if (!currentUser) {
     return (
@@ -76,7 +71,7 @@ function setPosts(data){
                     <PostContext.Provider value={{allPosts, setAllPosts}}>
                         <Route path ='/posts/new'>
                             <NavBar/>
-                            <CreatePost setPosts={setPosts}/>
+                            <CreatePost/>
                             <Filler/>
                         </Route>
                         <Route path ='/home'>

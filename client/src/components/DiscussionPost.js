@@ -5,7 +5,8 @@ import CreateResponseForm from "./CreateResponseForm";
 import ResponseDisplay from "./ResponseDisplay";
 
 function DiscussionPost({post}){
-    const renderResponses = post.responses.map(r => <ResponseDisplay response={r} key={r.id}/>)
+    const sorted = post.responses.sort((a, b) => (a.id > b.id) ? 1 : -1)
+    const renderResponses = sorted.map(r => <ResponseDisplay response={r} key={r.id}/>)
 
     return (
          <Paper elevation={3} className="discussionContainer" >

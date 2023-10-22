@@ -7,10 +7,13 @@ import { PostContext } from "./PostContext";
 
 function Home({displayMessage}){
     const {allPosts} = useContext(PostContext)
+    let discussionPostJSX
 
-    const discussionPostJSX = allPosts?.map(post => {
-        return (<DiscussionPost post={post} key={post.id}/>)
-    })
+    if(allPosts.length){
+        discussionPostJSX = allPosts.map(post => {
+            return (<DiscussionPost post={post} key={post.id}/>)
+        })
+    }
 
     const noDiscussions = <Typography variant="h3" className="noDiscussions">{displayMessage}</Typography>
     const renderPosts = discussionPostJSX?.length > 0 ? discussionPostJSX : noDiscussions
