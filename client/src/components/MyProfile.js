@@ -2,10 +2,24 @@ import { Avatar, Card, Container, Grid, Typography} from "@mui/material";
 import React, { useContext } from "react";
 import { UserContext } from "./UserContext";
 import '../styles/myResponses.css'
+import { PostContext } from "./PostContext";
 
 function MyProfile(){
     const { currentUser } = useContext(UserContext)
+    const { allPosts } = useContext(PostContext)
     const date = currentUser.created_at.split("T")[0]
+    const responses = []
+
+    allPosts.map(post => {
+        post.responses.map(resp => {
+            if (resp.user.id === currentUser.id){
+                responses.push(resp)
+                console.log(allPosts[resp.post_id])
+            }
+        })
+    })
+
+    console.log(responses)
 
     return (
         <Container className="myProfileContainer">
