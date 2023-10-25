@@ -39,7 +39,6 @@ function UpdateForm({response, display, setFormDisplay}){
                 }
                 return post
             })
-            // console.log('updatedResponses', updatedResponses)
             setAllPosts(updatedResponses)
         })
         setFormDisplay({display:'none'})

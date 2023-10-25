@@ -1,8 +1,7 @@
-import { Avatar, Card, Container, Grid, Typography} from "@mui/material";
+import { Avatar, Container, Grid, Typography} from "@mui/material";
 import React, { useContext } from "react";
 import { UserContext } from "./UserContext";
 import '../styles/myResponses.css'
-import { PostContext } from "./PostContext";
 import MyProfileResponses from "./MyProfileResponses";
 
 function MyProfile(){
@@ -18,12 +17,12 @@ function MyProfile(){
     uniquePosts.map(post => {
          post.responses.map(response => {
             if (response.user_id === currentUser.id){
-                myResposnes.push(response)
+                myResposnes.push({post: post.question, response: response})
             }
         }).filter(r => r !== undefined)
     })
 
-    const renderMyResponses = myResposnes.map(r => <MyProfileResponses response={r} key={r.id}/>)
+    const renderMyResponses = myResposnes.map(r => <MyProfileResponses responseObj={r} key={r.response.id}/>)
 
     return (
         <Container className="myProfileContainer">

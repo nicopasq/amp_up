@@ -1,12 +1,18 @@
-import { Card, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import React from "react";
+import '../styles/profileResponseCard.css'
 
-function MyProfileResponses({response}){
-    console.log(response)
+function MyProfileResponses({responseObj}){
+    const {post, response} = responseObj
     return (
-        <Grid item xs={4}>
-            <Card>
-                <Typography variant="h4">Hello, This is a users response</Typography>
+        <Grid item xs={6}>
+            <Card className="myResponseCard">
+                <CardContent className="cardContent">
+                    <div className="cardHeader">
+                        <Typography variant="h4">{post}</Typography>
+                    </div>
+                    <Typography variant="h5">{response.body}</Typography>
+                </CardContent>
             </Card>
         </Grid>
     )
