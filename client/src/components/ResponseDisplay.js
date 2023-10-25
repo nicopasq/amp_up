@@ -8,7 +8,8 @@ import { PostContext } from './PostContext';
 function ResponseDisplay({response}){
     const {allPosts, setAllPosts} = useContext(PostContext)
     const [formDisplay, setFormDisplay] = useState({display:'none'})
-    const {currentUser} = useContext(UserContext)
+    const {currentUser, setCurrentUser} = useContext(UserContext)
+    const currentUserCopy = {...currentUser}
     const buttonSx = {
         visibility: 'hidden'
     }
@@ -35,6 +36,15 @@ function ResponseDisplay({response}){
                 return p
             })
             setAllPosts(filteredResponses)
+
+            const updatedPosts = currentUserCopy.posts.map(post => {
+                if (post.id === response.post.id){
+                    const updatedResponses = post.responses.filter(r => r.id !== response.id)
+                    return {...post, responses: updatedResponses}
+                }
+                return post
+            })
+            setCurrentUser({...currentUser, posts: updatedPosts})
         })
     }
 

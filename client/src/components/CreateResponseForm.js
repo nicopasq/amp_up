@@ -52,14 +52,14 @@ function CreateResponseForm({post}){
                 if (!userCopy.posts.map(p => p.id).includes(data.post.id) || userCopy.posts.length === 0){
                     setCurrentUser({...currentUser, posts: [...currentUser.posts, data.post]})
                 } else {   
-                    const test = userCopy.posts.map(userPost => {
+                    const updatedPosts = userCopy.posts.map(userPost => {
                         if (userPost.id === data.post.id) {
                             return data.post
                         }
                         return userPost
                     })
                     
-                    setCurrentUser({...currentUser, posts: test})
+                    setCurrentUser({...currentUser, posts: updatedPosts})
                 }
             }
         })
