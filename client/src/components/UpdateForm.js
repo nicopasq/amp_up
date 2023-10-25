@@ -2,9 +2,12 @@ import { Button, TextField} from "@mui/material";
 import React, { useContext, useState } from "react";
 import '../styles/updateForm.css'
 import { PostContext } from "./PostContext";
+import { UserContext } from "./UserContext";
 
 function UpdateForm({response, display, setFormDisplay}){
     const {allPosts, setAllPosts} = useContext(PostContext)
+    const {currentUser, setCurrentUser} = useContext(UserContext)
+    const currentUserCopy = {...currentUser}
     const [updatedResponseBody, setUpdatedResponseBody] = useState('')
 
     function handleSubmit(e){
@@ -40,6 +43,22 @@ function UpdateForm({response, display, setFormDisplay}){
                 return post
             })
             setAllPosts(updatedResponses)
+
+            const updatedPosts = currentUserCopy.posts.map(post => {
+                if (post.id === data.post.id){
+                    const responseCopy = [...post.responses]
+                    const updated = responseCopy.map(resp => {
+                        if(resp.id === data.id){
+                            resp.body = data.body
+                            return resp
+                        }
+                        return resp
+                    })
+                    return {...post, responses: updated}
+                }
+                return post
+            })
+            setCurrentUser({...currentUser, posts: updatedPosts})
         })
         setFormDisplay({display:'none'})
     }
