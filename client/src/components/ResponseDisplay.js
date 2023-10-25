@@ -12,7 +12,7 @@ function ResponseDisplay({response}){
     const buttonSx = {
         visibility: 'hidden'
     }
-
+    
     if (currentUser.id === response.user.id){
         buttonSx.visibility = {visibility: 'block'}
     }
@@ -27,7 +27,7 @@ function ResponseDisplay({response}){
         })
         .then(() => {
             const filteredResponses = [...allPosts].filter(p => {
-                if(p?.id === response.post_id){
+                if(p?.id === response.post.id){
                     const filtered = p.responses.filter(resp => resp.id !== response.id)
                     p.responses = filtered
                     return p

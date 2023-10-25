@@ -11,7 +11,7 @@ function UpdateForm({response, display, setFormDisplay}){
         e.preventDefault()
         const updatedResponseObj = {
             user_id: response.user.id,
-            post_id: response.post_id,
+            post_id: response.post.id,
             body: updatedResponseBody
         }
 

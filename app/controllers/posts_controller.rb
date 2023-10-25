@@ -5,6 +5,7 @@ class PostsController < ApplicationController
         
         def create
             post = Post.create!(question: params[:question])
+            post.responses = []
             render json: post, status: :created
         end
         

@@ -3,23 +3,27 @@ import React, { useContext } from "react";
 import { UserContext } from "./UserContext";
 import '../styles/myResponses.css'
 import { PostContext } from "./PostContext";
+import MyProfileResponses from "./MyProfileResponses";
 
 function MyProfile(){
     const { currentUser } = useContext(UserContext)
-    const { allPosts } = useContext(PostContext)
+    const currentUserCopy = {...currentUser}
     const date = currentUser.created_at.split("T")[0]
-    const responses = []
+    const unique = {}
+    const uniquePosts = currentUserCopy.posts.filter(obj => !unique[obj.id] && (unique[obj.id] = true))
+    console.log('surrent user', currentUser)
 
-    allPosts.map(post => {
-        post.responses.map(resp => {
-            if (resp.user.id === currentUser.id){
-                responses.push(resp)
-                console.log(allPosts[resp.post_id])
+
+    const myResposnes = []
+    uniquePosts.map(post => {
+         post.responses.map(response => {
+            if (response.user_id === currentUser.id){
+                myResposnes.push(response)
             }
-        })
+        }).filter(r => r !== undefined)
     })
 
-    console.log(responses)
+    const renderMyResponses = myResposnes.map(r => <MyProfileResponses response={r} key={r.id}/>)
 
     return (
         <Container className="myProfileContainer">
@@ -34,6 +38,7 @@ function MyProfile(){
             <div id="userResponses">
                 <Typography variant="h2" className="myResponsesH2">My Responses</Typography>
                 <Grid container spacing={3} className="responseCardContainer">
+                    {renderMyResponses}
                 </Grid>
             </div>
         </Container>

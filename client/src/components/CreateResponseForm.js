@@ -5,8 +5,8 @@ import '../styles/createResponseForm.css'
 import { PostContext } from "./PostContext";
 
 function CreateResponseForm({post}){
+    const {currentUser, setCurrentUser} = useContext(UserContext)
     const {allPosts, setAllPosts} = useContext(PostContext)
-    const {currentUser} = useContext(UserContext)
     const [errors, setErrors] = useState([])
     const [visibility, setVisibility] = useState({
         visibility: 'hidden',
@@ -39,6 +39,7 @@ function CreateResponseForm({post}){
                 setVisibility({visibility:'block'})
                 setTimeout(() => {setVisibility({visibility:'hidden'})},'3000')
             } else {
+                const userCopy = {...currentUser}
                 const addedResponses = [...allPosts].map(p => {
                     if(p.id === post.id){
                         p.responses.push(data)
@@ -47,6 +48,19 @@ function CreateResponseForm({post}){
                     return p
                 })
                 setAllPosts(addedResponses)
+
+                if (!userCopy.posts.map(p => p.id).includes(data.post.id) || userCopy.posts.length === 0){
+                    setCurrentUser({...currentUser, posts: [...currentUser.posts, data.post]})
+                } else {   
+                    const test = userCopy.posts.map(userPost => {
+                        if (userPost.id === data.post.id) {
+                            return data.post
+                        }
+                        return userPost
+                    })
+                    
+                    setCurrentUser({...currentUser, posts: test})
+                }
             }
         })
     }

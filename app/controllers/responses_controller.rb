@@ -7,7 +7,6 @@ class ResponsesController < ApplicationController
             current_user.responses.create!(body: params[:body], post_id:params[:post_id])
             new_response = current_user.responses.last
             render json:new_response
-
         end
     
         def update

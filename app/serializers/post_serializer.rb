@@ -1,4 +1,4 @@
 class PostSerializer < ActiveModel::Serializer
   has_many :responses
-  attributes :id, :question
+  attributes :id, :question, :responses
 end
