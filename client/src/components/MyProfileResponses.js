@@ -1,17 +1,32 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import '../styles/profileResponseCard.css'
+import { UserContext } from "./UserContext";
 
 function MyProfileResponses({responseObj}){
-    const {post, response} = responseObj
+    const {post, responses} = responseObj
+    const {currentUser} = useContext(UserContext)
+
+    const myResponses = responses.map(response => {
+        if (response.user_id === currentUser.id){
+            return response
+        } 
+    }).filter(r => r !== undefined)
+
+    const renderResponses = myResponses.map( response => (
+        <li className="myResponseLi" key={response.id}>
+            <Typography variant="h5">{response.body}</Typography>
+        </li>
+    ))
+
     return (
         <Grid item xs={6}>
-            <Card className="myResponseCard">
+            <Card>
                 <CardContent className="cardContent">
-                    <div className="cardHeader">
-                        <Typography variant="h4">{post}</Typography>
-                    </div>
-                    <Typography variant="h5">{response.body}</Typography>
+                    <Typography variant="h4" className="cardHeader">{post}</Typography>
+                    <ul className="myResponsesUl">
+                        {renderResponses}
+                    </ul>
                 </CardContent>
             </Card>
         </Grid>

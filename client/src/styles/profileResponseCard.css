@@ -5,3 +5,9 @@
     border-bottom: 1px solid black;
     margin-bottom: 10px;
 }
+.myResponsesUl{
+    list-style: none;
+}
+.myResponseLi{
+    margin-top: 5px;
+}

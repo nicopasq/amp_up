@@ -10,20 +10,14 @@ function MyProfile(){
     const date = currentUser.created_at.split("T")[0]
     const unique = {}
     const uniquePosts = currentUserCopy.posts.filter(obj => !unique[obj.id] && (unique[obj.id] = true))
-    console.log('surrent user', currentUser)
-
-
-    const myResposnes = []
-    uniquePosts.map(post => {
-         post.responses.map(response => {
-            if (response.user_id === currentUser.id){
-                myResposnes.push({post: post.question, response: response})
-            }
-        }).filter(r => r !== undefined)
+// console.log(currentUser)
+    const renderPosts = uniquePosts.map(post => {
+        const userResponses = post.responses.filter(response => response.user_id === currentUser.id)
+        if (userResponses.length){
+            return <MyProfileResponses responseObj={{post: post.question, responses: userResponses}} key={post.id}/>
+        }
     })
-
-    const renderMyResponses = myResposnes.map(r => <MyProfileResponses responseObj={r} key={r.response.id}/>)
-
+console.log(renderPosts)
     return (
         <Container className="myProfileContainer">
             <div id="header">
@@ -37,7 +31,7 @@ function MyProfile(){
             <div id="userResponses">
                 <Typography variant="h2" className="myResponsesH2">My Responses</Typography>
                 <Grid container spacing={3} className="responseCardContainer">
-                    {renderMyResponses}
+                    {renderPosts}
                 </Grid>
             </div>
         </Container>
