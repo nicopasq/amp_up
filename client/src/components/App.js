@@ -20,8 +20,9 @@ function App(){
     const [errorSx, setErrorSx] = useState({
         visibility:"hidden"
     })
+
     const history = useHistory()
-    useEffect(() => {
+    useEffect(() => { 
         fetch(`/auth`)
         .then((r) => {
             if (r.ok){

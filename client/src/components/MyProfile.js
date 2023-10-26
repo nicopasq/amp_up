@@ -10,14 +10,15 @@ function MyProfile(){
     const date = currentUser.created_at.split("T")[0]
     const unique = {}
     const uniquePosts = currentUserCopy.posts.filter(obj => !unique[obj.id] && (unique[obj.id] = true))
-// console.log(currentUser)
+    
     const renderPosts = uniquePosts.map(post => {
         const userResponses = post.responses.filter(response => response.user_id === currentUser.id)
         if (userResponses.length){
             return <MyProfileResponses responseObj={{post: post.question, responses: userResponses}} key={post.id}/>
         }
     })
-console.log(renderPosts)
+
+
     return (
         <Container className="myProfileContainer">
             <div id="header">
