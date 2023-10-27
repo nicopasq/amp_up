@@ -5,9 +5,13 @@ class UsersController < ApplicationController
     wrap_parameters format: []
     
         def create
-            new_user = User.create!(user_params)
-            session[:user_id] = new_user.id
-            render json: new_user, only: [:id, :username], status: :created
+            if params[:password] == params[:passwordConf]
+                new_user = User.create!(username: params[:username], password: params[:password])
+                session[:user_id] = new_user.id
+                render json: new_user, status: :created
+            else
+                render json: {errors: 'Password and Password Confirmation must match'}
+            end 
         end
     
         def show
@@ -18,7 +22,7 @@ class UsersController < ApplicationController
         private 
     
         def user_params
-            params.permit(:username, :password)
+            params.permit(:username, :password, :passwordConf)
         end
     
         def render_unproccesable_entity invalid

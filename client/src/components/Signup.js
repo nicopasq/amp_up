@@ -7,6 +7,7 @@ import { UserContext } from "./UserContext";
 function Signup({setErrors, setErrorSx}){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [passwordConf, setPasswordConf] = useState('')
     const {setCurrentUser} = useContext(UserContext)
     const history = useHistory();
 
@@ -46,7 +47,7 @@ function createUser(e){
         headers:{
             "Content-Type":"application/json"
         },
-        body: JSON.stringify({username, password})
+        body: JSON.stringify({username, password, passwordConf})
     })
     .then((r) => r.json())
     .then((data) => {
@@ -90,6 +91,16 @@ function createUser(e){
                         placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}/>
+                    </Grid>
+                    <Grid item xs={4} sx={inputStyle}>
+                        <TextField 
+                        id="password"
+                        sx={{scale:"1.3"}} 
+                        variant="standard" 
+                        type="password"
+                        placeholder="Confirm Password"
+                        onChange={(e) => setPasswordConf(e.target.value)}
+                        value={passwordConf}/>
                     </Grid>
                 <Button 
                 sx={submitBtnStyle} 
