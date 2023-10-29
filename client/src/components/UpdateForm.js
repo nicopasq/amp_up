@@ -8,7 +8,7 @@ function UpdateForm({response, display, setFormDisplay}){
     const {allPosts, setAllPosts} = useContext(PostContext)
     const {currentUser, setCurrentUser} = useContext(UserContext)
     const currentUserCopy = {...currentUser}
-    const [updatedResponseBody, setUpdatedResponseBody] = useState('')
+    const updatedResponseBody = "This responses has been updated"
 
     function handleSubmit(e){
         e.preventDefault()
@@ -69,8 +69,7 @@ function UpdateForm({response, display, setFormDisplay}){
                 variant="filled" 
                 placeholder={response.body} 
                 className="updateBody"
-                value={updatedResponseBody}
-                onChange={e => setUpdatedResponseBody(e.target.value)}
+                value={'This response has been updated'}
                 />
             <Button type="submit" className="submitUpdateForm">Change Response</Button>
             <Button variant='text' className="cancelBtn" onClick={() => setFormDisplay({display:'none'})}>Cancel</Button>
