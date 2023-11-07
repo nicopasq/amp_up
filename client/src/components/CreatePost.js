@@ -2,7 +2,6 @@ import { Alert, Button, Container, Paper, TextField, Typography } from "@mui/mat
 import React, { useContext, useState } from "react";
 import "../styles/createPost.css"
 import { PostContext } from "./PostContext";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function CreatePost(){
@@ -15,7 +14,6 @@ function CreatePost(){
     const [postSuccessSx, setPostSuccessSx] = useState({
         visibility: 'hidden',
     })
-    const history = useHistory()
 
     function handleSubmit(e){
         e.preventDefault()
