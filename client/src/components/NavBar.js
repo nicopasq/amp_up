@@ -13,7 +13,6 @@ function NavBar(){
             method: "DELETE", 
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(currentUser)})
-            .then((r) => console.log(r))
             setCurrentUser('')
             history.push('')
     }

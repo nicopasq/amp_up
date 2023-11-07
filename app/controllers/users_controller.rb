@@ -10,12 +10,12 @@ class UsersController < ApplicationController
                 session[:user_id] = new_user.id
                 render json: new_user, status: :created
             else
-                render json: {errors: 'Password and Password Confirmation must match'}
+                render json: {errors: 'Password and Password Confirmation must match'}, status: 401
             end 
         end
     
         def show
-            user = User.find(session[:user_id])
+            user = User.find_by(id: session[:user_id])
             render json: user
         end
     

@@ -27,7 +27,6 @@ function UpdateForm({response, display, setFormDisplay}){
         })
         .then(r => r.json())
         .then(data => {
-            console.log(data)
             const updatedResponses = [...allPosts].map(post => {
                 if (post.id === data.post.id){
                     const responseCopy = [...post.responses]

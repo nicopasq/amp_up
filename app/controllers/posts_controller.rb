@@ -14,13 +14,13 @@ class PostsController < ApplicationController
             if posts.count > 0
                 render json: posts
             else
-                render json: {error:"There are currently no Discussions."}
+                render json: {error:"There are currently no Discussions."}, status: 404
             end
             
         end
         private
     
         def render_unproccesable_entity invalid
-            render json: {errors: invalid.record.errors.full_messages}
+            render json: {errors: invalid.record.errors.full_messages}, status: 422
         end
     end

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
-import { Alert, Button, TextField, Typography, keyframes } from "@mui/material";
+import { Alert, Button, TextField, Typography } from "@mui/material";
 import '../styles/createResponseForm.css'
 import { PostContext } from "./PostContext";
 
@@ -12,14 +12,13 @@ function CreateResponseForm({post}){
         visibility: 'hidden',
         position:'relative'
     })
-    const [responseBody, setResponseBody] = useState({
+    const [responseObj, setresponseObj] = useState({
         body: '',
         post_id:post.id,
-        user_id:currentUser.id
     })
 
     function handleChange(e){
-        setResponseBody({...responseBody, body: e.target.value})
+        setresponseObj({...responseObj, body: e.target.value})
     }
 
     function handleSubmit(e){
@@ -30,7 +29,7 @@ function CreateResponseForm({post}){
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify(responseBody)
+            body:JSON.stringify(responseObj)
         })
         .then(r =>r.json())
         .then(data => {
@@ -75,7 +74,7 @@ function CreateResponseForm({post}){
             className="responseInput" 
             variant="filled"
             name="body"
-            value={responseBody.body}
+            value={responseObj.body}
             onChange={e => handleChange(e)}/>
 
             <Button className='postResponseBtn' type="submit">
