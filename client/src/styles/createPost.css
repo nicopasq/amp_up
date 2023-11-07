@@ -43,3 +43,15 @@
 h1{
     text-align: center;
 }
+
+.postAlert{
+    position: relative;
+    top: -7vh;
+    width:58.35vw;
+    height: 5.75vh;
+}
+.postAlert button{
+    position: absolute;
+    top: .8vh;
+    left: 14vw;
+}

@@ -49,6 +49,7 @@ function loginUser(e){
         if(data.error){
             setErrors(data.error.login);
             setErrorSx({visibility:"block"});
+            setTimeout(() => {setErrorSx({visibility:'hidden'})},'3000')
         } else {
             history.push('/home')
             setCurrentUser(data)

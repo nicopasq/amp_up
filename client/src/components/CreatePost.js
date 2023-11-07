@@ -2,6 +2,7 @@ import { Alert, Button, Container, Paper, TextField, Typography } from "@mui/mat
 import React, { useContext, useState } from "react";
 import "../styles/createPost.css"
 import { PostContext } from "./PostContext";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function CreatePost(){
@@ -11,6 +12,11 @@ function CreatePost(){
     const [postErrorSx, setPostErrorSx] = useState({
         visibility:'hidden'
     })
+    const [postSuccessSx, setPostSuccessSx] = useState({
+        visibility: 'hidden',
+    })
+    const history = useHistory()
+
     function handleSubmit(e){
         e.preventDefault()
 
@@ -26,8 +32,11 @@ function CreatePost(){
             if (data.errors){
                 setPostErrors(data.errors)
                 setPostErrorSx({visibility:"block"})
+                setTimeout(() => {setPostErrorSx({visibility:'hidden'})},'3000')
             } else{
                 setAllPosts(allPosts => [...allPosts, data])
+                setPostSuccessSx({visibility:'block'})
+                setTimeout(() => {setPostSuccessSx({visibility:'hidden'})},'3000')
             }
         })
     }
@@ -37,6 +46,10 @@ function CreatePost(){
                 <Alert severity="error" sx={postErrorSx}>
                     {postErrors}
                     <Button variant="standard" onClick={e => setPostErrorSx({visibility:"hidden"})}>X</Button>
+                </Alert>
+                <Alert severity="success" sx={postSuccessSx} className="postAlert">
+                    <Typography> Successfuly created discussion!</Typography>
+                    <Button variant="standard" onClick={e => setPostSuccessSx({visibility:"hidden"})}>X</Button>
                 </Alert>
                 <Typography variant="h1"><u>Start A Discussion</u></Typography>
             </div>

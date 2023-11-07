@@ -54,6 +54,7 @@ function createUser(e){
         if(data.errors){
             setErrors(data.errors)
             setErrorSx({visibility:"block"})
+            setTimeout(() => {setErrorSx({visibility:'hidden'})},'3000')
         } else {
             setCurrentUser(data)
             history.push('/home')
@@ -94,7 +95,7 @@ function createUser(e){
                     </Grid>
                     <Grid item xs={4} sx={inputStyle}>
                         <TextField 
-                        id="password"
+                        id="passwordConfirmation"
                         sx={{scale:"1.3"}} 
                         variant="standard" 
                         type="password"
