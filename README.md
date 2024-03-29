@@ -1,4 +1,4 @@
-# Music Media: Phase 4 Project
+# Apm Up: Phase 4 Project
 
 Project Description: The goal of this app is to connect musical individuals through community discussion posts. It utilizes a Rails API to effectively communicate requests to and from the backend. React.js makes up the frontend and uses complex state management to update how a user's view is rendered.
 
